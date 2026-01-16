@@ -343,7 +343,45 @@ export const Pages: CollectionConfig = {
             },
           ],
         },
-        // CTA Section Block
+        // Callout Section Block (dark background with effects)
+        {
+          slug: 'callout',
+          labels: {
+            singular: 'Callout Sectie',
+            plural: 'Callout Secties',
+          },
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              required: true,
+              label: 'Titel',
+              admin: {
+                description: 'Gebruik *tekst* voor gekleurde highlight',
+              },
+            },
+            {
+              name: 'description',
+              type: 'textarea',
+              label: 'Beschrijving',
+            },
+            {
+              name: 'ctaText',
+              type: 'text',
+              label: 'Knop tekst',
+              defaultValue: 'Start gratis proefperiode',
+            },
+            {
+              name: 'ctaLink',
+              type: 'text',
+              label: 'Knop link',
+              admin: {
+                description: 'Optioneel: laat leeg om het formulier te openen',
+              },
+            },
+          ],
+        },
+        // CTA Section Block (simple, no background)
         {
           slug: 'cta',
           labels: {

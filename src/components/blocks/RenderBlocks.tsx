@@ -2,6 +2,7 @@ import type { Page } from '@/payload-types'
 import HeroBlock from './HeroBlock'
 import StatsBlock from './StatsBlock'
 import CTABlock from './CTABlock'
+import CalloutBlock from './CalloutBlock'
 import FeaturesBlock from './FeaturesBlock'
 import IntegrationsTickerBlock from './IntegrationsTickerBlock'
 import IntegrationsGridBlockServer from './IntegrationsGridBlockServer'
@@ -16,6 +17,7 @@ const blockComponents: Record<string, React.ComponentType<{ block: Block }>> = {
   hero: HeroBlock as React.ComponentType<{ block: Block }>,
   stats: StatsBlock as React.ComponentType<{ block: Block }>,
   cta: CTABlock as React.ComponentType<{ block: Block }>,
+  callout: CalloutBlock as React.ComponentType<{ block: Block }>,
   features: FeaturesBlock as React.ComponentType<{ block: Block }>,
   integrationsTicker: IntegrationsTickerBlock as React.ComponentType<{ block: Block }>,
   integrationsGrid: IntegrationsGridBlockServer as React.ComponentType<{ block: Block }>,

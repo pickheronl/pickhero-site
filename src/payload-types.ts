@@ -316,6 +316,21 @@ export interface Page {
             ctaLink?: string | null;
             id?: string | null;
             blockName?: string | null;
+            blockType: 'callout';
+          }
+        | {
+            /**
+             * Gebruik *tekst* voor gekleurde highlight
+             */
+            title: string;
+            description?: string | null;
+            ctaText?: string | null;
+            /**
+             * Optioneel: laat leeg om het formulier te openen
+             */
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
             blockType: 'cta';
           }
         | {
@@ -726,6 +741,16 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               subtitle?: T;
               plans?: T;
+              id?: T;
+              blockName?: T;
+            };
+        callout?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              ctaText?: T;
+              ctaLink?: T;
               id?: T;
               blockName?: T;
             };
