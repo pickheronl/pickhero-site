@@ -8,7 +8,7 @@ export default async function FooterWrapper() {
   let footer = null
   try {
     footer = await payload.findGlobal({
-      slug: 'footer' as 'footer',
+      slug: 'footer' as const,
     })
   } catch {
     // Global not yet created

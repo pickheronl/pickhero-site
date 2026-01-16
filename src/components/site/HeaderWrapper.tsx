@@ -8,7 +8,7 @@ export default async function HeaderWrapper() {
   let navigation = null
   try {
     navigation = await payload.findGlobal({
-      slug: 'navigation' as 'navigation',
+      slug: 'navigation' as const,
     })
   } catch {
     // Global not yet created
