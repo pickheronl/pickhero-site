@@ -1,6 +1,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "main": ".open-next/worker.js",
+  "routes": [
+    {
+      "pattern": "acc-site.pickhero.nl",
+      "custom_domain": true
+    }
+  ],
   "name": "pickhero-site",
   "compatibility_date": "2025-08-15",
   "compatibility_flags": [
@@ -14,6 +20,12 @@
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS",
+  },
+  "observability": {
+    "logs": {
+      "enabled": false,
+      "invocation_logs": true
+    }
   },
   "d1_databases": [
     {
