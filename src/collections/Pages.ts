@@ -86,6 +86,15 @@ export const Pages: CollectionConfig = {
               relationTo: 'media',
               label: 'Dashboard afbeelding',
             },
+            {
+              name: 'mobileImage',
+              type: 'upload',
+              relationTo: 'media',
+              label: 'Mobiele app afbeelding/GIF',
+              admin: {
+                description: 'Optioneel: afbeelding of GIF van de mobiele app die over de dashboard afbeelding zweeft',
+              },
+            },
           ],
         },
         // Features Section Block

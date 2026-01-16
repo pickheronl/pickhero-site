@@ -8,6 +8,7 @@ type HeroBlockType = Extract<NonNullable<Page['blocks']>[number], { blockType: '
 
 export default function HeroBlock({ block }: { block: HeroBlockType }) {
   const image = block.image as Media | null
+  const mobileImage = block.mobileImage as Media | null
 
   return (
     <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
@@ -15,7 +16,7 @@ export default function HeroBlock({ block }: { block: HeroBlockType }) {
       <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/10 rounded-full blur-3xl" />
 
-      <div className="container mx-auto px-4 lg:px-8 relative">
+      <div className="container max-w-7xl mx-auto px-4 lg:px-8 relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="text-center lg:text-left">
             {block.badge && (
@@ -79,6 +80,20 @@ export default function HeroBlock({ block }: { block: HeroBlockType }) {
                   priority
                 />
               </div>
+
+              {/* Mobile App Frame - overlapping */}
+              {mobileImage && (
+                <div className="absolute -bottom-8 -right-4 lg:-right-12 w-36 sm:w-44 lg:w-52 rounded-xl shadow-2xl border border-border overflow-hidden animate-float">
+                  <Image
+                    src={mobileImage.url || ''}
+                    alt={mobileImage.alt || 'PickHero Mobile App'}
+                    width={208}
+                    height={400}
+                    className="w-full h-auto"
+                    unoptimized={mobileImage.mimeType === 'image/gif'}
+                  />
+                </div>
+              )}
 
               <div className="absolute -top-4 -right-4 lg:right-32 bg-accent text-accent-foreground px-4 py-2 rounded-lg shadow-lg font-semibold text-sm animate-float">
                 📦 Order gepickt!

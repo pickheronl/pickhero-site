@@ -4,31 +4,30 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Menu, X } from "lucide-react";
 import TrialFormDialog from "./TrialFormDialog";
 
-const Header = () => {
+interface NavItem {
+  label: string;
+  link: string;
+  id?: string | null;
+}
+
+interface NavigationData {
+  items?: NavItem[] | null;
+  ctaText?: string | null;
+  loginText?: string | null;
+  loginUrl?: string | null;
+}
+
+interface HeaderProps {
+  navigation?: NavigationData | null;
+}
+
+const Header = ({ navigation }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navItems = [
-    { label: "Home", href: "/" },
-    { label: "Functies", href: "/functies" },
-    { label: "Integraties", href: "/integraties" },
-    { label: "Prijzen", href: "/prijzen" },
-  ];
-
-  const overOnsItems = [
-    { label: "Over ons", href: "/over-ons" },
-    { label: "FAQ", href: "/faq" },
-    { label: "Blog", href: "/blog" },
-    { label: "Contact", href: "/contact" },
-  ];
+  const navItems = navigation?.items || [];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
@@ -46,38 +45,29 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
+            {navItems.map((item, index) => (
               <Link
-                key={item.label}
-                href={item.href}
+                key={index}
+                href={item.link}
                 className="text-foreground/80 hover:text-primary font-medium transition-colors duration-200"
               >
                 {item.label}
               </Link>
             ))}
-            
-            {/* Over ons Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center gap-1 text-foreground/80 hover:text-primary font-medium transition-colors duration-200">
-                Over ons
-                <ChevronDown className="w-4 h-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="bg-card border-border">
-                {overOnsItems.map((item) => (
-                  <DropdownMenuItem key={item.label} asChild>
-                    <Link href={item.href} className="cursor-pointer">
-                      {item.label}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-4">
+            {navigation?.loginUrl && (
+              <a
+                href={navigation.loginUrl}
+                className="text-foreground/80 hover:text-primary font-medium transition-colors duration-200"
+              >
+                {navigation.loginText || 'Inloggen'}
+              </a>
+            )}
             <TrialFormDialog>
-              <Button variant="hero">Start gratis proefperiode</Button>
+              <Button variant="hero">{navigation?.ctaText || 'Gratis proberen'}</Button>
             </TrialFormDialog>
           </div>
 
@@ -97,10 +87,10 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border animate-fade-in">
             <nav className="flex flex-col gap-4">
-              {navItems.map((item) => (
+              {navItems.map((item, index) => (
                 <Link
-                  key={item.label}
-                  href={item.href}
+                  key={index}
+                  href={item.link}
                   className="text-foreground/80 hover:text-primary font-medium py-2 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -108,23 +98,17 @@ const Header = () => {
                 </Link>
               ))}
               
-              <div className="border-t border-border pt-4 mt-2">
-                <span className="text-sm text-muted-foreground mb-2 block">Over ons</span>
-                {overOnsItems.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="text-foreground/80 hover:text-primary font-medium py-2 transition-colors block pl-4"
-                    onClick={() => setIsMenuOpen(false)}
+              <div className="flex flex-col gap-3 pt-4 border-t border-border mt-2">
+                {navigation?.loginUrl && (
+                  <a
+                    href={navigation.loginUrl}
+                    className="text-foreground/80 hover:text-primary font-medium py-2 transition-colors"
                   >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-              
-              <div className="flex flex-col gap-3 pt-4">
+                    {navigation.loginText || 'Inloggen'}
+                  </a>
+                )}
                 <TrialFormDialog>
-                  <Button variant="hero" className="w-full">Start gratis proefperiode</Button>
+                  <Button variant="hero" className="w-full">{navigation?.ctaText || 'Gratis proberen'}</Button>
                 </TrialFormDialog>
               </div>
             </nav>

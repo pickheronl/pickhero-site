@@ -1,5 +1,7 @@
 import type { Page, Feature } from '@/payload-types'
 import * as LucideIcons from 'lucide-react'
+import { getPayload } from 'payload'
+import config from '@payload-config'
 
 type FeaturesBlockType = Extract<NonNullable<Page['blocks']>[number], { blockType: 'features' }>
 
@@ -21,8 +23,18 @@ const iconMap: Record<string, keyof typeof LucideIcons> = {
   Printer: 'Printer',
 }
 
-export default function FeaturesBlock({ block }: { block: FeaturesBlockType }) {
-  const features = block.features as Feature[] | null
+export default async function FeaturesBlock({ block }: { block: FeaturesBlockType }) {
+  let features = block.features as Feature[] | null
+
+  // If no specific features selected, fetch all
+  if (!features || features.length === 0) {
+    const payload = await getPayload({ config })
+    const allFeatures = await payload.find({
+      collection: 'features',
+      limit: 100,
+    })
+    features = allFeatures.docs
+  }
 
   if (!features || features.length === 0) return null
 

@@ -1,10 +1,22 @@
 import Image from 'next/image'
 import type { Page, Integration, Media } from '@/payload-types'
+import { getPayload } from 'payload'
+import config from '@payload-config'
 
 type IntegrationsBlockType = Extract<NonNullable<Page['blocks']>[number], { blockType: 'integrations' }>
 
-export default function IntegrationsBlock({ block }: { block: IntegrationsBlockType }) {
-  const integrations = block.integrations as Integration[] | null
+export default async function IntegrationsBlock({ block }: { block: IntegrationsBlockType }) {
+  let integrations = block.integrations as Integration[] | null
+
+  // If no specific integrations selected, fetch all
+  if (!integrations || integrations.length === 0) {
+    const payload = await getPayload({ config })
+    const allIntegrations = await payload.find({
+      collection: 'integrations',
+      limit: 100,
+    })
+    integrations = allIntegrations.docs
+  }
 
   if (!integrations || integrations.length === 0) return null
 

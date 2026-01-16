@@ -17,6 +17,9 @@ import { Testimonials } from './collections/Testimonials'
 import { PricingPlans } from './collections/PricingPlans'
 import { FAQ } from './collections/FAQ'
 
+import { Navigation } from './globals/Navigation'
+import { Footer } from './globals/Footer'
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 const realpath = (value: string) => (fs.existsSync(value) ? fs.realpathSync(value) : undefined)
@@ -37,6 +40,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Pages, Integrations, Features, Testimonials, PricingPlans, FAQ],
+  globals: [Navigation, Footer],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
