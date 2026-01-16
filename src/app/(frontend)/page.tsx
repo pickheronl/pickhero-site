@@ -4,6 +4,8 @@ import HeaderWrapper from '@/components/site/HeaderWrapper'
 import FooterWrapper from '@/components/site/FooterWrapper'
 import RenderBlocks from '@/components/blocks/RenderBlocks'
 
+export const dynamic = 'force-dynamic'
+
 export default async function HomePage() {
   const payload = await getPayload({ config })
 
