@@ -4,6 +4,10 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   // First, disable foreign keys for the entire migration
   await db.run(sql`PRAGMA foreign_keys=OFF;`)
   
+  // Cleanup any leftover temp tables from failed migrations
+  await db.run(sql`DROP TABLE IF EXISTS \`__new_navigation_items\`;`)
+  await db.run(sql`DROP TABLE IF EXISTS \`navigation_items_submenu_items\`;`)
+  
   // Create new navigation_items table with new structure
   await db.run(sql`CREATE TABLE \`__new_navigation_items\` (
   	\`_order\` integer NOT NULL,
