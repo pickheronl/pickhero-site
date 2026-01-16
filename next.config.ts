@@ -6,6 +6,12 @@ const nextConfig = {
   // Read more: https://opennext.js.org/cloudflare/howtos/workerd
   serverExternalPackages: ['jose', 'pg-cloudflare'],
 
+  // Use Cloudflare Image Resizing
+  images: {
+    loader: 'custom',
+    loaderFile: './image-loader.ts',
+  },
+
   // Your Next.js config here
   webpack: (webpackConfig: any) => {
     webpackConfig.resolve.extensionAlias = {
