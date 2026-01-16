@@ -1,14 +1,23 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import TrialFormDialog from '@/components/site/TrialFormDialog'
 import type { Page, Media } from '@/payload-types'
+import { parseTitle } from '@/lib/parseTitle'
 
 type HeroBlockType = Extract<NonNullable<Page['blocks']>[number], { blockType: 'hero' }>
 
 export default function HeroBlock({ block }: { block: HeroBlockType }) {
   const image = block.image as Media | null
   const mobileImage = block.mobileImage as Media | null
+
+  const ctaButton = (
+    <Button variant="hero" size="lg">
+      {block.ctaText || 'Start gratis proefperiode'}
+      <ArrowRight className="ml-2" />
+    </Button>
+  )
 
   return (
     <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
@@ -27,8 +36,7 @@ export default function HeroBlock({ block }: { block: HeroBlockType }) {
             )}
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-fade-in">
-              {block.title}{' '}
-              {block.titleHighlight && <span className="text-gradient">{block.titleHighlight}</span>}
+              {parseTitle(block.title)}
             </h1>
 
             {block.description && (
@@ -38,12 +46,11 @@ export default function HeroBlock({ block }: { block: HeroBlockType }) {
             )}
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8 animate-fade-in">
-              <TrialFormDialog>
-                <Button variant="hero" size="lg">
-                  {block.ctaText || 'Start gratis proefperiode'}
-                  <ArrowRight className="ml-2" />
-                </Button>
-              </TrialFormDialog>
+              {block.ctaLink ? (
+                <Link href={block.ctaLink}>{ctaButton}</Link>
+              ) : (
+                <TrialFormDialog>{ctaButton}</TrialFormDialog>
+              )}
             </div>
 
             {block.benefits && block.benefits.length > 0 && (

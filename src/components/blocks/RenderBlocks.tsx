@@ -3,7 +3,8 @@ import HeroBlock from './HeroBlock'
 import StatsBlock from './StatsBlock'
 import CTABlock from './CTABlock'
 import FeaturesBlock from './FeaturesBlock'
-import IntegrationsBlock from './IntegrationsBlock'
+import IntegrationsTickerBlock from './IntegrationsTickerBlock'
+import IntegrationsGridBlockServer from './IntegrationsGridBlockServer'
 import TestimonialsBlock from './TestimonialsBlock'
 import PricingBlock from './PricingBlock'
 import FAQBlock from './FAQBlock'
@@ -16,7 +17,8 @@ const blockComponents: Record<string, React.ComponentType<{ block: Block }>> = {
   stats: StatsBlock as React.ComponentType<{ block: Block }>,
   cta: CTABlock as React.ComponentType<{ block: Block }>,
   features: FeaturesBlock as React.ComponentType<{ block: Block }>,
-  integrations: IntegrationsBlock as React.ComponentType<{ block: Block }>,
+  integrationsTicker: IntegrationsTickerBlock as React.ComponentType<{ block: Block }>,
+  integrationsGrid: IntegrationsGridBlockServer as React.ComponentType<{ block: Block }>,
   testimonials: TestimonialsBlock as React.ComponentType<{ block: Block }>,
   pricing: PricingBlock as React.ComponentType<{ block: Block }>,
   faq: FAQBlock as React.ComponentType<{ block: Block }>,

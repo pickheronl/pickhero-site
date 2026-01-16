@@ -3,6 +3,7 @@ import { Check, ArrowRight } from 'lucide-react'
 import TrialFormDialog from '@/components/site/TrialFormDialog'
 import type { Page, PricingPlan } from '@/payload-types'
 import { cn } from '@/lib/utils'
+import { parseTitle } from '@/lib/parseTitle'
 
 type PricingBlockType = Extract<NonNullable<Page['blocks']>[number], { blockType: 'pricing' }>
 
@@ -20,10 +21,9 @@ export default function PricingBlock({ block }: { block: PricingBlockType }) {
               {block.badge}
             </div>
           )}
-          {(block.title || block.titleHighlight) && (
+          {block.title && (
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              {block.title}{' '}
-              {block.titleHighlight && <span className="text-gradient">{block.titleHighlight}</span>}
+              {parseTitle(block.title)}
             </h2>
           )}
           {block.subtitle && (

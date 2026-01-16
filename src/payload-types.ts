@@ -193,11 +193,10 @@ export interface Page {
              * Kleine tekst boven de titel (bijv. "Logic4 integratie live")
              */
             badge?: string | null;
-            title: string;
             /**
-             * Deel van de titel met kleur accent
+             * Gebruik *tekst* voor gekleurde highlight (bijv. "Slimmer picken met *PickHero*")
              */
-            titleHighlight?: string | null;
+            title: string;
             description?: string | null;
             benefits?:
               | {
@@ -206,6 +205,10 @@ export interface Page {
                 }[]
               | null;
             ctaText?: string | null;
+            /**
+             * Optioneel: laat leeg om het formulier te openen, of vul een URL in
+             */
+            ctaLink?: string | null;
             image?: (number | null) | Media;
             /**
              * Optioneel: afbeelding of GIF van de mobiele app die over de dashboard afbeelding zweeft
@@ -217,8 +220,10 @@ export interface Page {
           }
         | {
             badge?: string | null;
+            /**
+             * Gebruik *tekst* voor gekleurde highlight
+             */
             title?: string | null;
-            titleHighlight?: string | null;
             subtitle?: string | null;
             /**
              * Selecteer functies om te tonen
@@ -230,14 +235,38 @@ export interface Page {
           }
         | {
             badge?: string | null;
+            /**
+             * Gebruik *tekst* voor gekleurde highlight
+             */
             title?: string | null;
-            titleHighlight?: string | null;
             subtitle?: string | null;
+            /**
+             * Laat leeg om alle integraties te tonen
+             */
             integrations?: (number | Integration)[] | null;
             ctaText?: string | null;
+            ctaLinkText?: string | null;
+            ctaLink?: string | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'integrations';
+            blockType: 'integrationsTicker';
+          }
+        | {
+            badge?: string | null;
+            /**
+             * Gebruik *tekst* voor gekleurde highlight
+             */
+            title?: string | null;
+            subtitle?: string | null;
+            showFilters?: boolean | null;
+            ctaText?: string | null;
+            /**
+             * Optioneel: laat leeg om het formulier te openen
+             */
+            ctaLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'integrationsGrid';
           }
         | {
             stats?:
@@ -253,8 +282,10 @@ export interface Page {
           }
         | {
             badge?: string | null;
+            /**
+             * Gebruik *tekst* voor gekleurde highlight
+             */
             title?: string | null;
-            titleHighlight?: string | null;
             testimonials?: (number | Testimonial)[] | null;
             id?: string | null;
             blockName?: string | null;
@@ -262,8 +293,10 @@ export interface Page {
           }
         | {
             badge?: string | null;
+            /**
+             * Gebruik *tekst* voor gekleurde highlight
+             */
             title?: string | null;
-            titleHighlight?: string | null;
             subtitle?: string | null;
             plans?: (number | PricingPlan)[] | null;
             id?: string | null;
@@ -271,9 +304,16 @@ export interface Page {
             blockType: 'pricing';
           }
         | {
+            /**
+             * Gebruik *tekst* voor gekleurde highlight
+             */
             title: string;
             description?: string | null;
             ctaText?: string | null;
+            /**
+             * Optioneel: laat leeg om het formulier te openen
+             */
+            ctaLink?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'cta';
@@ -299,6 +339,9 @@ export interface Page {
             blockType: 'richText';
           }
         | {
+            /**
+             * Gebruik *tekst* voor gekleurde highlight
+             */
             title?: string | null;
             subtitle?: string | null;
             items?: (number | Faq)[] | null;
@@ -605,7 +648,6 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               badge?: T;
               title?: T;
-              titleHighlight?: T;
               description?: T;
               benefits?:
                 | T
@@ -614,6 +656,7 @@ export interface PagesSelect<T extends boolean = true> {
                     id?: T;
                   };
               ctaText?: T;
+              ctaLink?: T;
               image?: T;
               mobileImage?: T;
               id?: T;
@@ -624,21 +667,33 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               badge?: T;
               title?: T;
-              titleHighlight?: T;
               subtitle?: T;
               features?: T;
               id?: T;
               blockName?: T;
             };
-        integrations?:
+        integrationsTicker?:
           | T
           | {
               badge?: T;
               title?: T;
-              titleHighlight?: T;
               subtitle?: T;
               integrations?: T;
               ctaText?: T;
+              ctaLinkText?: T;
+              ctaLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        integrationsGrid?:
+          | T
+          | {
+              badge?: T;
+              title?: T;
+              subtitle?: T;
+              showFilters?: T;
+              ctaText?: T;
+              ctaLink?: T;
               id?: T;
               blockName?: T;
             };
@@ -660,7 +715,6 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               badge?: T;
               title?: T;
-              titleHighlight?: T;
               testimonials?: T;
               id?: T;
               blockName?: T;
@@ -670,7 +724,6 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               badge?: T;
               title?: T;
-              titleHighlight?: T;
               subtitle?: T;
               plans?: T;
               id?: T;
@@ -682,6 +735,7 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               description?: T;
               ctaText?: T;
+              ctaLink?: T;
               id?: T;
               blockName?: T;
             };

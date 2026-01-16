@@ -1,11 +1,23 @@
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
 import TrialFormDialog from '@/components/site/TrialFormDialog'
 import type { Page } from '@/payload-types'
+import { parseTitle } from '@/lib/parseTitle'
 
 type CTABlockType = Extract<NonNullable<Page['blocks']>[number], { blockType: 'cta' }>
 
 export default function CTABlock({ block }: { block: CTABlockType }) {
+  const ctaButton = (
+    <Button
+      size="lg"
+      className="bg-background text-foreground hover:bg-background/90 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+    >
+      {block.ctaText || 'Start gratis proefperiode'}
+      <ArrowRight className="ml-2" />
+    </Button>
+  )
+
   return (
     <section className="py-20 lg:py-32 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
@@ -17,7 +29,7 @@ export default function CTABlock({ block }: { block: CTABlockType }) {
 
           <div className="relative">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-6">
-              {block.title}
+              {parseTitle(block.title)}
             </h2>
             {block.description && (
               <p className="text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
@@ -25,15 +37,11 @@ export default function CTABlock({ block }: { block: CTABlockType }) {
               </p>
             )}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <TrialFormDialog>
-                <Button
-                  size="lg"
-                  className="bg-background text-foreground hover:bg-background/90 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
-                >
-                  {block.ctaText || 'Start gratis proefperiode'}
-                  <ArrowRight className="ml-2" />
-                </Button>
-              </TrialFormDialog>
+              {block.ctaLink ? (
+                <Link href={block.ctaLink}>{ctaButton}</Link>
+              ) : (
+                <TrialFormDialog>{ctaButton}</TrialFormDialog>
+              )}
             </div>
           </div>
         </div>

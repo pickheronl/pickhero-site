@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import type { Page, Testimonial, Media } from '@/payload-types'
 import { Star } from 'lucide-react'
+import { parseTitle } from '@/lib/parseTitle'
 
 type TestimonialsBlockType = Extract<NonNullable<Page['blocks']>[number], { blockType: 'testimonials' }>
 
@@ -18,10 +19,9 @@ export default function TestimonialsBlock({ block }: { block: TestimonialsBlockT
               {block.badge}
             </div>
           )}
-          {(block.title || block.titleHighlight) && (
+          {block.title && (
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              {block.title}{' '}
-              {block.titleHighlight && <span className="text-gradient">{block.titleHighlight}</span>}
+              {parseTitle(block.title)}
             </h2>
           )}
         </div>

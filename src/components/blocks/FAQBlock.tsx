@@ -6,6 +6,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import { RichText } from '@payloadcms/richtext-lexical/react'
+import { parseTitle } from '@/lib/parseTitle'
 
 type FAQBlockType = Extract<NonNullable<Page['blocks']>[number], { blockType: 'faq' }>
 
@@ -19,7 +20,7 @@ export default function FAQBlock({ block }: { block: FAQBlockType }) {
       <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
         <div className="text-center mb-16">
           {block.title && (
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{block.title}</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{parseTitle(block.title)}</h2>
           )}
           {block.subtitle && (
             <p className="text-lg text-muted-foreground">{block.subtitle}</p>

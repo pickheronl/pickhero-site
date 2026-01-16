@@ -2,6 +2,7 @@ import type { Page, Feature } from '@/payload-types'
 import * as LucideIcons from 'lucide-react'
 import { getPayload } from 'payload'
 import config from '@payload-config'
+import { parseTitle } from '@/lib/parseTitle'
 
 type FeaturesBlockType = Extract<NonNullable<Page['blocks']>[number], { blockType: 'features' }>
 
@@ -47,10 +48,9 @@ export default async function FeaturesBlock({ block }: { block: FeaturesBlockTyp
               {block.badge}
             </div>
           )}
-          {(block.title || block.titleHighlight) && (
+          {block.title && (
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              {block.title}{' '}
-              {block.titleHighlight && <span className="text-gradient">{block.titleHighlight}</span>}
+              {parseTitle(block.title)}
             </h2>
           )}
           {block.subtitle && (

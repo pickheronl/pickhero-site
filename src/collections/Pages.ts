@@ -48,13 +48,8 @@ export const Pages: CollectionConfig = {
               type: 'text',
               required: true,
               label: 'Titel',
-            },
-            {
-              name: 'titleHighlight',
-              type: 'text',
-              label: 'Titel highlight',
               admin: {
-                description: 'Deel van de titel met kleur accent',
+                description: 'Gebruik *tekst* voor gekleurde highlight (bijv. "Slimmer picken met *PickHero*")',
               },
             },
             {
@@ -79,6 +74,14 @@ export const Pages: CollectionConfig = {
               type: 'text',
               label: 'CTA knop tekst',
               defaultValue: 'Start gratis proefperiode',
+            },
+            {
+              name: 'ctaLink',
+              type: 'text',
+              label: 'CTA knop link',
+              admin: {
+                description: 'Optioneel: laat leeg om het formulier te openen, of vul een URL in',
+              },
             },
             {
               name: 'image',
@@ -115,11 +118,9 @@ export const Pages: CollectionConfig = {
               name: 'title',
               type: 'text',
               label: 'Titel',
-            },
-            {
-              name: 'titleHighlight',
-              type: 'text',
-              label: 'Titel highlight',
+              admin: {
+                description: 'Gebruik *tekst* voor gekleurde highlight',
+              },
             },
             {
               name: 'subtitle',
@@ -138,12 +139,12 @@ export const Pages: CollectionConfig = {
             },
           ],
         },
-        // Integrations Section Block
+        // Integrations Ticker Block (for homepage - animated slider)
         {
-          slug: 'integrations',
+          slug: 'integrationsTicker',
           labels: {
-            singular: 'Integraties Sectie',
-            plural: 'Integraties Secties',
+            singular: 'Integraties Ticker',
+            plural: 'Integraties Tickers',
           },
           fields: [
             {
@@ -156,11 +157,9 @@ export const Pages: CollectionConfig = {
               name: 'title',
               type: 'text',
               label: 'Titel',
-            },
-            {
-              name: 'titleHighlight',
-              type: 'text',
-              label: 'Titel highlight',
+              admin: {
+                description: 'Gebruik *tekst* voor gekleurde highlight',
+              },
             },
             {
               name: 'subtitle',
@@ -173,12 +172,76 @@ export const Pages: CollectionConfig = {
               relationTo: 'integrations',
               hasMany: true,
               label: 'Integraties',
+              admin: {
+                description: 'Laat leeg om alle integraties te tonen',
+              },
             },
             {
               name: 'ctaText',
               type: 'text',
               label: 'CTA tekst',
-              defaultValue: 'Mis je een integratie? Laat het ons weten',
+              defaultValue: 'Mis je een integratie?',
+            },
+            {
+              name: 'ctaLinkText',
+              type: 'text',
+              label: 'CTA link tekst',
+              defaultValue: 'Laat het ons weten',
+            },
+            {
+              name: 'ctaLink',
+              type: 'text',
+              label: 'CTA link',
+              defaultValue: '/contact',
+            },
+          ],
+        },
+        // Integrations Grid Block (for integrations page - with filters)
+        {
+          slug: 'integrationsGrid',
+          labels: {
+            singular: 'Integraties Grid',
+            plural: 'Integraties Grids',
+          },
+          fields: [
+            {
+              name: 'badge',
+              type: 'text',
+              label: 'Badge',
+              defaultValue: 'Integraties',
+            },
+            {
+              name: 'title',
+              type: 'text',
+              label: 'Titel',
+              admin: {
+                description: 'Gebruik *tekst* voor gekleurde highlight',
+              },
+            },
+            {
+              name: 'subtitle',
+              type: 'textarea',
+              label: 'Ondertitel',
+            },
+            {
+              name: 'showFilters',
+              type: 'checkbox',
+              label: 'Toon categorie filters',
+              defaultValue: true,
+            },
+            {
+              name: 'ctaText',
+              type: 'text',
+              label: 'CTA knop tekst',
+              defaultValue: 'Start gratis proefperiode',
+            },
+            {
+              name: 'ctaLink',
+              type: 'text',
+              label: 'CTA knop link',
+              admin: {
+                description: 'Optioneel: laat leeg om het formulier te openen',
+              },
             },
           ],
         },
@@ -231,11 +294,9 @@ export const Pages: CollectionConfig = {
               name: 'title',
               type: 'text',
               label: 'Titel',
-            },
-            {
-              name: 'titleHighlight',
-              type: 'text',
-              label: 'Titel highlight',
+              admin: {
+                description: 'Gebruik *tekst* voor gekleurde highlight',
+              },
             },
             {
               name: 'testimonials',
@@ -264,11 +325,9 @@ export const Pages: CollectionConfig = {
               name: 'title',
               type: 'text',
               label: 'Titel',
-            },
-            {
-              name: 'titleHighlight',
-              type: 'text',
-              label: 'Titel highlight',
+              admin: {
+                description: 'Gebruik *tekst* voor gekleurde highlight',
+              },
             },
             {
               name: 'subtitle',
@@ -297,6 +356,9 @@ export const Pages: CollectionConfig = {
               type: 'text',
               required: true,
               label: 'Titel',
+              admin: {
+                description: 'Gebruik *tekst* voor gekleurde highlight',
+              },
             },
             {
               name: 'description',
@@ -308,6 +370,14 @@ export const Pages: CollectionConfig = {
               type: 'text',
               label: 'Knop tekst',
               defaultValue: 'Start gratis proefperiode',
+            },
+            {
+              name: 'ctaLink',
+              type: 'text',
+              label: 'Knop link',
+              admin: {
+                description: 'Optioneel: laat leeg om het formulier te openen',
+              },
             },
           ],
         },
@@ -340,6 +410,9 @@ export const Pages: CollectionConfig = {
               type: 'text',
               label: 'Titel',
               defaultValue: 'Veelgestelde vragen',
+              admin: {
+                description: 'Gebruik *tekst* voor gekleurde highlight',
+              },
             },
             {
               name: 'subtitle',
