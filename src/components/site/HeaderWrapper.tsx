@@ -9,6 +9,7 @@ export default async function HeaderWrapper() {
   try {
     navigation = await payload.findGlobal({
       slug: 'navigation' as const,
+      depth: 2, // Populate internal page links
     })
   } catch {
     // Global not yet created

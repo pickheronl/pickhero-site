@@ -1129,10 +1129,39 @@ export interface Navigation {
   items?:
     | {
         label: string;
+        linkType?: ('internal' | 'external' | 'anchor') | null;
+        internalLink?: (number | null) | Page;
         /**
-         * Bijv. "#functies" of "/contact"
+         * Volledige URL inclusief https://
          */
-        link: string;
+        externalUrl?: string | null;
+        /**
+         * Bijv. "functies" wordt "#functies"
+         */
+        anchor?: string | null;
+        openInNewTab?: boolean | null;
+        hasSubmenu?: boolean | null;
+        submenuItems?:
+          | {
+              label: string;
+              /**
+               * Optionele korte beschrijving onder het label
+               */
+              description?: string | null;
+              linkType?: ('internal' | 'external' | 'anchor') | null;
+              internalLink?: (number | null) | Page;
+              /**
+               * Volledige URL inclusief https://
+               */
+              externalUrl?: string | null;
+              /**
+               * Bijv. "functies" wordt "#functies"
+               */
+              anchor?: string | null;
+              openInNewTab?: boolean | null;
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;
@@ -1228,7 +1257,24 @@ export interface NavigationSelect<T extends boolean = true> {
     | T
     | {
         label?: T;
-        link?: T;
+        linkType?: T;
+        internalLink?: T;
+        externalUrl?: T;
+        anchor?: T;
+        openInNewTab?: T;
+        hasSubmenu?: T;
+        submenuItems?:
+          | T
+          | {
+              label?: T;
+              description?: T;
+              linkType?: T;
+              internalLink?: T;
+              externalUrl?: T;
+              anchor?: T;
+              openInNewTab?: T;
+              id?: T;
+            };
         id?: T;
       };
   ctaText?: T;
