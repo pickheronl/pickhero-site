@@ -1,8 +1,12 @@
 import type { Page, Feature } from '@/payload-types'
 import * as LucideIcons from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { parseTitle } from '@/lib/parseTitle'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import TrialFormDialog from '@/components/site/TrialFormDialog'
 
 type FeaturesBlockType = Extract<NonNullable<Page['blocks']>[number], { blockType: 'features' }>
 
@@ -77,6 +81,26 @@ export default async function FeaturesBlock({ block }: { block: FeaturesBlockTyp
             )
           })}
         </div>
+
+        {block.ctaText && (
+          <div className="mt-12 text-center">
+            {block.ctaLink ? (
+              <Link href={block.ctaLink}>
+                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+                  {block.ctaText}
+                  <ArrowRight className="ml-2" />
+                </Button>
+              </Link>
+            ) : (
+              <TrialFormDialog>
+                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+                  {block.ctaText}
+                  <ArrowRight className="ml-2" />
+                </Button>
+              </TrialFormDialog>
+            )}
+          </div>
+        )}
       </div>
     </section>
   )

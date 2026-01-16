@@ -10,6 +10,10 @@ import TestimonialsBlock from './TestimonialsBlock'
 import PricingBlock from './PricingBlock'
 import FAQBlock from './FAQBlock'
 import RichTextBlock from './RichTextBlock'
+import BlogListBlock from './BlogListBlock'
+import ContactFormBlock from './ContactFormBlock'
+import ContactInfoBlock from './ContactInfoBlock'
+import IconCardsBlock from './IconCardsBlock'
 
 type Block = NonNullable<Page['blocks']>[number]
 
@@ -25,6 +29,10 @@ const blockComponents: Record<string, React.ComponentType<{ block: Block }>> = {
   pricing: PricingBlock as React.ComponentType<{ block: Block }>,
   faq: FAQBlock as React.ComponentType<{ block: Block }>,
   richText: RichTextBlock as React.ComponentType<{ block: Block }>,
+  blogList: BlogListBlock as React.ComponentType<{ block: Block }>,
+  contactForm: ContactFormBlock as React.ComponentType<{ block: Block }>,
+  contactInfo: ContactInfoBlock as React.ComponentType<{ block: Block }>,
+  iconCards: IconCardsBlock as React.ComponentType<{ block: Block }>,
 }
 
 export default function RenderBlocks({ blocks }: { blocks: Page['blocks'] }) {

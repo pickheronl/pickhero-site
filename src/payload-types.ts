@@ -75,6 +75,7 @@ export interface Config {
     testimonials: Testimonial;
     'pricing-plans': PricingPlan;
     faq: Faq;
+    posts: Post;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -90,6 +91,7 @@ export interface Config {
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     'pricing-plans': PricingPlansSelect<false> | PricingPlansSelect<true>;
     faq: FaqSelect<false> | FaqSelect<true>;
+    posts: PostsSelect<false> | PostsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -102,10 +104,12 @@ export interface Config {
   globals: {
     navigation: Navigation;
     footer: Footer;
+    'contact-settings': ContactSetting;
   };
   globalsSelect: {
     navigation: NavigationSelect<false> | NavigationSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    'contact-settings': ContactSettingsSelect<false> | ContactSettingsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -229,6 +233,14 @@ export interface Page {
              * Selecteer functies om te tonen
              */
             features?: (number | Feature)[] | null;
+            /**
+             * Optioneel: laat leeg om geen knop te tonen
+             */
+            ctaText?: string | null;
+            /**
+             * Optioneel: laat leeg om het formulier te openen
+             */
+            ctaLink?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'features';
@@ -363,6 +375,65 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'faq';
+          }
+        | {
+            /**
+             * Gebruik *tekst* voor gekleurde highlight
+             */
+            title?: string | null;
+            subtitle?: string | null;
+            showFeatured?: boolean | null;
+            postsPerPage?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'blogList';
+          }
+        | {
+            title?: string | null;
+            description?: string | null;
+            submitButtonText?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactForm';
+          }
+        | {
+            title?: string | null;
+            showMap?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactInfo';
+          }
+        | {
+            /**
+             * Gebruik *tekst* voor gekleurde highlight
+             */
+            title?: string | null;
+            subtitle?: string | null;
+            cards?:
+              | {
+                  icon:
+                    | 'target'
+                    | 'zap'
+                    | 'heart'
+                    | 'users'
+                    | 'shield'
+                    | 'clock'
+                    | 'check'
+                    | 'star'
+                    | 'truck'
+                    | 'package'
+                    | 'bar-chart'
+                    | 'globe';
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            columns?: ('2' | '3' | '4') | null;
+            backgroundColor?: ('none' | 'muted') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'iconCards';
           }
       )[]
     | null;
@@ -513,6 +584,66 @@ export interface Faq {
   createdAt: string;
 }
 /**
+ * Blog posts en artikelen
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts".
+ */
+export interface Post {
+  id: number;
+  title: string;
+  /**
+   * URL-vriendelijke versie van de titel (bijv. "mijn-eerste-blog-post")
+   */
+  slug: string;
+  /**
+   * Korte samenvatting voor in overzichten en SEO
+   */
+  excerpt?: string | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Categorie voor filtering
+   */
+  category?: ('warehouse' | 'ecommerce' | 'integrations' | 'tips' | 'news' | 'updates') | null;
+  author?: string | null;
+  featuredImage?: (number | null) | Media;
+  readTimeMinutes?: number | null;
+  /**
+   * Laat leeg voor concepten
+   */
+  publishedAt?: string | null;
+  /**
+   * Vink aan om het artikel zichtbaar te maken op de website
+   */
+  isPublished?: boolean | null;
+  seo?: {
+    /**
+     * Laat leeg om de post titel te gebruiken
+     */
+    metaTitle?: string | null;
+    /**
+     * Laat leeg om de samenvatting te gebruiken
+     */
+    metaDescription?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -567,6 +698,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'faq';
         value: number | Faq;
+      } | null)
+    | ({
+        relationTo: 'posts';
+        value: number | Post;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -684,6 +819,8 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               subtitle?: T;
               features?: T;
+              ctaText?: T;
+              ctaLink?: T;
               id?: T;
               blockName?: T;
             };
@@ -780,6 +917,51 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        blogList?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              showFeatured?: T;
+              postsPerPage?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contactForm?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              submitButtonText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contactInfo?:
+          | T
+          | {
+              title?: T;
+              showMap?: T;
+              id?: T;
+              blockName?: T;
+            };
+        iconCards?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              cards?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              columns?: T;
+              backgroundColor?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   seo?:
     | T
@@ -869,6 +1051,30 @@ export interface FaqSelect<T extends boolean = true> {
   category?: T;
   isActive?: T;
   sortOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts_select".
+ */
+export interface PostsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  excerpt?: T;
+  content?: T;
+  category?: T;
+  author?: T;
+  featuredImage?: T;
+  readTimeMinutes?: T;
+  publishedAt?: T;
+  isPublished?: T;
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -980,6 +1186,40 @@ export interface Footer {
   createdAt?: string | null;
 }
 /**
+ * Beheer contactgegevens voor de website
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-settings".
+ */
+export interface ContactSetting {
+  id: number;
+  address?: {
+    street?: string | null;
+    postalCode?: string | null;
+    city?: string | null;
+    country?: string | null;
+  };
+  email?: string | null;
+  phone?: string | null;
+  /**
+   * Bijv. "Ma-Vr: 09:00 - 17:00"
+   */
+  openingHours?: string | null;
+  /**
+   * De volledige iframe src URL van Google Maps
+   */
+  mapsEmbedUrl?: string | null;
+  formSettings?: {
+    /**
+     * E-mailadres waar contactformulier berichten naartoe gestuurd worden
+     */
+    recipientEmail?: string | null;
+    successMessage?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "navigation_select".
  */
@@ -1031,6 +1271,33 @@ export interface FooterSelect<T extends boolean = true> {
         label?: T;
         url?: T;
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-settings_select".
+ */
+export interface ContactSettingsSelect<T extends boolean = true> {
+  address?:
+    | T
+    | {
+        street?: T;
+        postalCode?: T;
+        city?: T;
+        country?: T;
+      };
+  email?: T;
+  phone?: T;
+  openingHours?: T;
+  mapsEmbedUrl?: T;
+  formSettings?:
+    | T
+    | {
+        recipientEmail?: T;
+        successMessage?: T;
       };
   updatedAt?: T;
   createdAt?: T;

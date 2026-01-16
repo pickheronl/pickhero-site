@@ -36,10 +36,10 @@ export default function PricingBlock({ block }: { block: PricingBlockType }) {
             <div
               key={plan.id}
               className={cn(
-                'relative bg-card rounded-2xl p-8 border transition-all duration-300',
+                'relative bg-card rounded-2xl p-8 border-2 transition-all duration-300 hover:-translate-y-1',
                 plan.isPopular
-                  ? 'border-primary shadow-card-hover scale-105'
-                  : 'border-border hover:border-primary/20 hover:shadow-card-hover'
+                  ? 'border-primary shadow-glow'
+                  : 'border-border shadow-card hover:shadow-card-hover hover:border-primary/20'
               )}
             >
               {plan.isPopular && (

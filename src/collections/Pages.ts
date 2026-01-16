@@ -137,9 +137,25 @@ export const Pages: CollectionConfig = {
                 description: 'Selecteer functies om te tonen',
               },
             },
+            {
+              name: 'ctaText',
+              type: 'text',
+              label: 'Knop tekst',
+              admin: {
+                description: 'Optioneel: laat leeg om geen knop te tonen',
+              },
+            },
+            {
+              name: 'ctaLink',
+              type: 'text',
+              label: 'Knop link',
+              admin: {
+                description: 'Optioneel: laat leeg om het formulier te openen',
+              },
+            },
           ],
         },
-        // Integrations Ticker Block (for homepage - animated slider)
+        // Integrations Ticker Block
         {
           slug: 'integrationsTicker',
           labels: {
@@ -463,6 +479,178 @@ export const Pages: CollectionConfig = {
               relationTo: 'faq',
               hasMany: true,
               label: 'FAQ items',
+            },
+          ],
+        },
+        // Blog List Block
+        {
+          slug: 'blogList',
+          labels: {
+            singular: 'Blog Overzicht',
+            plural: 'Blog Overzichten',
+          },
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              label: 'Titel',
+              defaultValue: 'Blog',
+              admin: {
+                description: 'Gebruik *tekst* voor gekleurde highlight',
+              },
+            },
+            {
+              name: 'subtitle',
+              type: 'textarea',
+              label: 'Ondertitel',
+            },
+            {
+              name: 'showFeatured',
+              type: 'checkbox',
+              label: 'Toon uitgelichte post',
+              defaultValue: true,
+            },
+            {
+              name: 'postsPerPage',
+              type: 'number',
+              label: 'Posts per pagina',
+              defaultValue: 9,
+              min: 3,
+              max: 24,
+            },
+          ],
+        },
+        // Contact Form Block
+        {
+          slug: 'contactForm',
+          labels: {
+            singular: 'Contact Formulier',
+            plural: 'Contact Formulieren',
+          },
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              label: 'Titel',
+              defaultValue: 'Stuur ons een bericht',
+            },
+            {
+              name: 'description',
+              type: 'textarea',
+              label: 'Beschrijving',
+            },
+            {
+              name: 'submitButtonText',
+              type: 'text',
+              label: 'Verzendknop tekst',
+              defaultValue: 'Verstuur bericht',
+            },
+          ],
+        },
+        // Contact Info Block
+        {
+          slug: 'contactInfo',
+          labels: {
+            singular: 'Contact Info',
+            plural: 'Contact Info Blokken',
+          },
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              label: 'Titel',
+              defaultValue: 'Contactgegevens',
+            },
+            {
+              name: 'showMap',
+              type: 'checkbox',
+              label: 'Toon Google Maps',
+              defaultValue: true,
+            },
+          ],
+        },
+        // Icon Cards Block (for values, benefits, etc.)
+        {
+          slug: 'iconCards',
+          labels: {
+            singular: 'Icoon Kaarten',
+            plural: 'Icoon Kaarten Blokken',
+          },
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              label: 'Sectie Titel',
+              admin: {
+                description: 'Gebruik *tekst* voor gekleurde highlight',
+              },
+            },
+            {
+              name: 'subtitle',
+              type: 'textarea',
+              label: 'Ondertitel',
+            },
+            {
+              name: 'cards',
+              type: 'array',
+              label: 'Kaarten',
+              minRows: 1,
+              maxRows: 8,
+              fields: [
+                {
+                  name: 'icon',
+                  type: 'select',
+                  label: 'Icoon',
+                  required: true,
+                  options: [
+                    { label: 'Target (doel)', value: 'target' },
+                    { label: 'Zap (bliksem)', value: 'zap' },
+                    { label: 'Heart (hart)', value: 'heart' },
+                    { label: 'Users (gebruikers)', value: 'users' },
+                    { label: 'Shield (schild)', value: 'shield' },
+                    { label: 'Clock (klok)', value: 'clock' },
+                    { label: 'Check (vinkje)', value: 'check' },
+                    { label: 'Star (ster)', value: 'star' },
+                    { label: 'Truck (vrachtwagen)', value: 'truck' },
+                    { label: 'Package (pakket)', value: 'package' },
+                    { label: 'BarChart (grafiek)', value: 'bar-chart' },
+                    { label: 'Globe (wereld)', value: 'globe' },
+                  ],
+                },
+                {
+                  name: 'title',
+                  type: 'text',
+                  required: true,
+                  label: 'Titel',
+                },
+                {
+                  name: 'description',
+                  type: 'textarea',
+                  required: true,
+                  label: 'Beschrijving',
+                },
+              ],
+            },
+            {
+              name: 'columns',
+              type: 'select',
+              label: 'Kolommen',
+              defaultValue: '2',
+              options: [
+                { label: '2 kolommen', value: '2' },
+                { label: '3 kolommen', value: '3' },
+                { label: '4 kolommen', value: '4' },
+              ],
+            },
+            {
+              name: 'backgroundColor',
+              type: 'select',
+              label: 'Achtergrondkleur',
+              defaultValue: 'muted',
+              options: [
+                { label: 'Geen', value: 'none' },
+                { label: 'Licht grijs', value: 'muted' },
+              ],
             },
           ],
         },

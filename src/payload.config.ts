@@ -16,9 +16,11 @@ import { Features } from './collections/Features'
 import { Testimonials } from './collections/Testimonials'
 import { PricingPlans } from './collections/PricingPlans'
 import { FAQ } from './collections/FAQ'
+import { Posts } from './collections/Posts'
 
 import { Navigation } from './globals/Navigation'
 import { Footer } from './globals/Footer'
+import { ContactSettings } from './globals/ContactSettings'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -39,8 +41,8 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Pages, Integrations, Features, Testimonials, PricingPlans, FAQ],
-  globals: [Navigation, Footer],
+  collections: [Users, Media, Pages, Integrations, Features, Testimonials, PricingPlans, FAQ, Posts],
+  globals: [Navigation, Footer, ContactSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
