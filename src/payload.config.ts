@@ -10,6 +10,12 @@ import { r2Storage } from '@payloadcms/storage-r2'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { Pages } from './collections/Pages'
+import { Integrations } from './collections/Integrations'
+import { Features } from './collections/Features'
+import { Testimonials } from './collections/Testimonials'
+import { PricingPlans } from './collections/PricingPlans'
+import { FAQ } from './collections/FAQ'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -30,7 +36,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Pages, Integrations, Features, Testimonials, PricingPlans, FAQ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

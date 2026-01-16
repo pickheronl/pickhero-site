@@ -1,0 +1,195 @@
+@import "tailwindcss";
+@import url('@fontsource/roboto-condensed/400.css');
+@import url('@fontsource/roboto-condensed/500.css');
+@import url('@fontsource/roboto-condensed/700.css');
+
+@font-face {
+  font-family: 'Borna';
+  src:
+    url('/fonts/borna/borna-medium-webfont.woff2') format('woff2'),
+    url('/fonts/borna/borna-medium-webfont.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Tailwind v4 theme customization */
+@theme {
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(230 80% 23%);
+  --color-ink: hsl(225.88 60.71% 10.98%);
+
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(230 80% 23%);
+
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(230 80% 23%);
+
+  --color-primary: hsl(343 100% 63%);
+  --color-primary-foreground: hsl(0 0% 100%);
+
+  --color-secondary: hsl(220 16% 92%);
+  --color-secondary-foreground: hsl(230 80% 23%);
+
+  --color-muted: hsl(220 14% 96%);
+  --color-muted-foreground: hsl(220 9% 46%);
+
+  --color-accent: hsl(204 100% 78% / 0.4);
+  --color-accent-foreground: hsl(230 80% 15%);
+
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+
+  --color-border: hsl(220 13% 91%);
+  --color-input: hsl(220 13% 91%);
+  --color-ring: hsl(343 100% 63%);
+
+  --radius-lg: 0.75rem;
+  --radius-md: calc(0.75rem - 2px);
+  --radius-sm: calc(0.75rem - 4px);
+  --radius-xl: calc(0.75rem + 4px);
+  --radius-2xl: calc(0.75rem + 8px);
+
+  --font-sans: 'Roboto Condensed', system-ui, sans-serif;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
+  --animate-slide-in-left: slide-in-left 0.5s ease-out forwards;
+  --animate-scale-in: scale-in 0.4s ease-out forwards;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slide-in-left {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+}
+
+/* Custom CSS variables for gradients and shadows */
+:root {
+  --gradient-hero: linear-gradient(135deg, hsl(343 100% 63%) 0%, hsl(343 100% 63%) 100%);
+  --gradient-accent: linear-gradient(135deg, hsl(204 100% 78%) 0%, hsl(204 100% 78%) 100%);
+  --gradient-subtle: linear-gradient(180deg, hsl(248 100% 99%) 0%, hsl(0 0% 100%) 100%);
+  --shadow-glow: 0 20px 60px -15px hsl(343 100% 63% / 0.25);
+  --shadow-card: 0 4px 20px -2px hsl(230 80% 23% / 0.08);
+  --shadow-card-hover: 0 12px 40px -8px hsl(230 80% 23% / 0.15);
+}
+
+/* Base styles */
+* {
+  border-color: var(--color-border);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: 'Roboto Condensed', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  letter-spacing: -0.025em;
+  font-family: 'Borna', 'Roboto Condensed', sans-serif;
+}
+
+/* Custom utility classes */
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: var(--gradient-hero);
+}
+
+.bg-gradient-hero {
+  background-image: var(--gradient-hero);
+}
+
+.bg-gradient-accent {
+  background-image: var(--gradient-accent);
+}
+
+.bg-gradient-subtle {
+  background-image: var(--gradient-subtle);
+}
+
+.bg-ink {
+  background-color: var(--color-ink);
+}
+
+.shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+.shadow-card-hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Component classes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.ticker-wrapper {
+  display: flex;
+  width: max-content;
+  animation: ticker 40s linear infinite;
+}
+
+.ticker-wrapper:hover {
+  animation-play-state: paused;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
