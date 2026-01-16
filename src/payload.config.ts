@@ -50,7 +50,14 @@ export default buildConfig({
   plugins: [
     r2Storage({
       bucket: cloudflare.env.R2,
-      collections: { media: true },
+      collections: {
+        media: {
+          generateFileURL: ({ filename }) => {
+            // Use your R2 public URL - update this to your actual domain
+            return `${process.env.R2_PUBLIC_URL || 'https://pub-YOUR_BUCKET_ID.r2.dev'}/${filename}`
+          },
+        },
+      },
     }),
   ],
 })
