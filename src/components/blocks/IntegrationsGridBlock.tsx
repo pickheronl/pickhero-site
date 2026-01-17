@@ -197,7 +197,7 @@ export default function IntegrationsGridBlock({
                 <Button
                   variant="outline"
                   size="lg"
-                  className="bg-transparent border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+                  className="bg-transparent border-white/30 text-primary-foreground hover:bg-white/10"
                 >
                   Neem contact op
                 </Button>

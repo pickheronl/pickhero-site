@@ -19,6 +19,7 @@ const buttonVariants = cva(
         accent: "bg-accent text-accent-foreground hover:bg-accent/90 font-bold",
         headerCta: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg hover:-translate-y-0.5",
         ctaPink: "bg-primary text-primary-foreground shadow-glow hover:shadow-lg hover:-translate-y-0.5",
+        white: "bg-background text-foreground hover:bg-background/90 border border-white/20 shadow-lg hover:shadow-xl hover:-translate-y-0.5",
       },
       size: {
         default: "h-11 px-6 py-2",
