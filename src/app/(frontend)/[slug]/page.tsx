@@ -33,7 +33,7 @@ export default async function Page({ params }: PageProps) {
   return (
     <div className="min-h-screen bg-background">
       <HeaderWrapper />
-      <main>
+      <main className="pt-20">
         <RenderBlocks blocks={page.blocks} />
       </main>
       <FooterWrapper />
