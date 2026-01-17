@@ -129,7 +129,7 @@ const Footer = ({ footer }: FooterProps) => {
           ))}
         </div>
 
-        <div className="pt-8 border-t border-background/10 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="pt-8 border-t !border-background/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-background/60 text-sm">
             {footer?.copyright?.replace('{{year}}', new Date().getFullYear().toString()) || `© ${new Date().getFullYear()} PickHero. Alle rechten voorbehouden.`}
           </p>
