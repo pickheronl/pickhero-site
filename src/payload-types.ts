@@ -389,21 +389,6 @@ export interface Page {
             blockType: 'blogList';
           }
         | {
-            title?: string | null;
-            description?: string | null;
-            submitButtonText?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'contactForm';
-          }
-        | {
-            title?: string | null;
-            showMap?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'contactInfo';
-          }
-        | {
             formTitle?: string | null;
             formDescription?: string | null;
             submitButtonText?: string | null;
@@ -982,23 +967,6 @@ export interface PagesSelect<T extends boolean = true> {
               subtitle?: T;
               showFeatured?: T;
               postsPerPage?: T;
-              id?: T;
-              blockName?: T;
-            };
-        contactForm?:
-          | T
-          | {
-              title?: T;
-              description?: T;
-              submitButtonText?: T;
-              id?: T;
-              blockName?: T;
-            };
-        contactInfo?:
-          | T
-          | {
-              title?: T;
-              showMap?: T;
               id?: T;
               blockName?: T;
             };

@@ -520,55 +520,6 @@ export const Pages: CollectionConfig = {
             },
           ],
         },
-        // Contact Form Block
-        {
-          slug: 'contactForm',
-          labels: {
-            singular: 'Contact Formulier',
-            plural: 'Contact Formulieren',
-          },
-          fields: [
-            {
-              name: 'title',
-              type: 'text',
-              label: 'Titel',
-              defaultValue: 'Stuur ons een bericht',
-            },
-            {
-              name: 'description',
-              type: 'textarea',
-              label: 'Beschrijving',
-            },
-            {
-              name: 'submitButtonText',
-              type: 'text',
-              label: 'Verzendknop tekst',
-              defaultValue: 'Verstuur bericht',
-            },
-          ],
-        },
-        // Contact Info Block (separate)
-        {
-          slug: 'contactInfo',
-          labels: {
-            singular: 'Contact Info',
-            plural: 'Contact Info Blokken',
-          },
-          fields: [
-            {
-              name: 'title',
-              type: 'text',
-              label: 'Titel',
-              defaultValue: 'Contactgegevens',
-            },
-            {
-              name: 'showMap',
-              type: 'checkbox',
-              label: 'Toon Google Maps',
-              defaultValue: true,
-            },
-          ],
-        },
         // Contact Section Block (combined form + info in grid)
         {
           slug: 'contactSection',
