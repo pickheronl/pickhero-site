@@ -21,7 +21,7 @@ export default function CalloutBlock({ block }: { block: CalloutBlockType }) {
   return (
     <section className="py-20 lg:py-32 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="relative bg-ink rounded-3xl p-12 lg:p-20 text-center overflow-hidden">
+        <div className="relative bg-primary rounded-3xl p-12 lg:p-20 text-center overflow-hidden">
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-background rounded-full blur-3xl" />
