@@ -118,6 +118,8 @@ const Footer = ({ footer }: FooterProps) => {
                       <a
                         href={item.url}
                         className="text-background/70 hover:text-background transition-colors"
+                        target={/^(https?:)?\/\//.test(item.url) ? "_blank" : undefined}
+                        rel={/^(https?:)?\/\//.test(item.url) ? "noopener noreferrer" : undefined}
                       >
                         {item.label}
                       </a>
