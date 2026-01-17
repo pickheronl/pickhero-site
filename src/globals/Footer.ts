@@ -94,13 +94,5 @@ export const Footer: GlobalConfig = {
         description: 'Gebruik {{year}} voor het huidige jaar',
       },
     },
-    {
-      name: 'madeWith',
-      type: 'text',
-      label: 'Made with tekst',
-      admin: {
-        description: 'Bijv: "Made with ❤️ in the Netherlands"',
-      },
-    },
   ],
 }

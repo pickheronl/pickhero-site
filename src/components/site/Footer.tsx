@@ -36,7 +36,6 @@ interface FooterData {
   columns?: FooterColumn[] | null;
   socialLinks?: SocialLink[] | null;
   copyright?: string | null;
-  madeWith?: string | null;
 }
 
 interface FooterProps {
@@ -134,11 +133,6 @@ const Footer = ({ footer }: FooterProps) => {
           <p className="text-background/60 text-sm">
             {footer?.copyright?.replace('{{year}}', new Date().getFullYear().toString()) || `© ${new Date().getFullYear()} PickHero. Alle rechten voorbehouden.`}
           </p>
-          {footer?.madeWith && (
-            <p className="text-background/60 text-sm">
-              {footer.madeWith}
-            </p>
-          )}
         </div>
       </div>
     </footer>
