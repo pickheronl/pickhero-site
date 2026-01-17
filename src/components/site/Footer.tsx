@@ -30,10 +30,13 @@ interface FooterColumn {
 
 interface FooterData {
   description?: string | null;
+  address?: string | null;
+  phone?: string | null;
+  email?: string | null;
   columns?: FooterColumn[] | null;
   socialLinks?: SocialLink[] | null;
   copyright?: string | null;
-  legalLinks?: FooterLink[] | null;
+  madeWith?: string | null;
 }
 
 interface FooterProps {
@@ -59,6 +62,25 @@ const Footer = ({ footer }: FooterProps) => {
                 {footer.description}
               </p>
             )}
+            <address className="text-background/70 not-italic mb-6 text-sm whitespace-pre-line">
+              {footer?.address}
+              {footer?.phone && (
+                <>
+                  <br />
+                  <a href={`tel:${footer.phone}`} className="hover:text-background transition-colors">
+                    {footer.phone}
+                  </a>
+                </>
+              )}
+              {footer?.email && (
+                <>
+                  <br />
+                  <a href={`mailto:${footer.email}`} className="hover:text-background transition-colors">
+                    {footer.email}
+                  </a>
+                </>
+              )}
+            </address>
             {footer?.socialLinks && footer.socialLinks.length > 0 && (
               <div className="flex gap-4">
                 {footer.socialLinks.map((social, index) => {
@@ -112,18 +134,10 @@ const Footer = ({ footer }: FooterProps) => {
           <p className="text-background/60 text-sm">
             {footer?.copyright?.replace('{{year}}', new Date().getFullYear().toString()) || `© ${new Date().getFullYear()} PickHero. Alle rechten voorbehouden.`}
           </p>
-          {footer?.legalLinks && footer.legalLinks.length > 0 && (
-            <div className="flex gap-4">
-              {footer.legalLinks.map((link, index) => (
-                <Link
-                  key={index}
-                  href={link.url}
-                  className="text-background/60 hover:text-background text-sm transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
+          {footer?.madeWith && (
+            <p className="text-background/60 text-sm">
+              {footer.madeWith}
+            </p>
           )}
         </div>
       </div>

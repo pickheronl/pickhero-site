@@ -13,6 +13,21 @@ export const Footer: GlobalConfig = {
       label: 'Bedrijfsomschrijving',
     },
     {
+      name: 'address',
+      type: 'textarea',
+      label: 'Adres',
+    },
+    {
+      name: 'phone',
+      type: 'text',
+      label: 'Telefoonnummer',
+    },
+    {
+      name: 'email',
+      type: 'email',
+      label: 'E-mailadres',
+    },
+    {
       name: 'columns',
       type: 'array',
       label: 'Menu kolommen',
@@ -80,23 +95,12 @@ export const Footer: GlobalConfig = {
       },
     },
     {
-      name: 'legalLinks',
-      type: 'array',
-      label: 'Juridische links',
-      fields: [
-        {
-          name: 'label',
-          type: 'text',
-          required: true,
-          label: 'Label',
-        },
-        {
-          name: 'url',
-          type: 'text',
-          required: true,
-          label: 'URL',
-        },
-      ],
+      name: 'madeWith',
+      type: 'text',
+      label: 'Made with tekst',
+      admin: {
+        description: 'Bijv: "Made with ❤️ in the Netherlands"',
+      },
     },
   ],
 }
