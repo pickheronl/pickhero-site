@@ -155,7 +155,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         {/* Content */}
         <section className="pb-20">
           <div className="container mx-auto px-4 lg:px-8">
-            <article className="max-w-4xl mx-auto prose prose-lg prose-slate dark:prose-invert prose-headings:scroll-mt-28 prose-img:rounded-2xl prose-img:mx-auto prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
+            <article className="max-w-4xl mx-auto prose prose-lg prose-slate prose-headings:scroll-mt-28 prose-img:rounded-2xl prose-img:mx-auto prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
               {post.content && <RichText data={post.content} />}
             </article>
           </div>
