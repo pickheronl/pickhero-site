@@ -101,34 +101,38 @@ const Footer = ({ footer }: FooterProps) => {
             )}
           </div>
 
-          {footer?.columns?.map((column, index) => (
-            <div key={index} className="lg:flex-1">
-              <h4 className="font-semibold mb-4">{column.title}</h4>
-              <ul className="space-y-3">
-                {column.links?.map((item, linkIndex) => (
-                  <li key={linkIndex}>
-                    {item.url.startsWith("/") ? (
-                      <Link
-                        href={item.url}
-                        className="text-background/70 hover:text-background transition-colors"
-                      >
-                        {item.label}
-                      </Link>
-                    ) : (
-                      <a
-                        href={item.url}
-                        className="text-background/70 hover:text-background transition-colors"
-                        target={/^(https?:)?\/\//.test(item.url) ? "_blank" : undefined}
-                        rel={/^(https?:)?\/\//.test(item.url) ? "noopener noreferrer" : undefined}
-                      >
-                        {item.label}
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
+          {footer?.columns && footer.columns.length > 0 && (
+            <div className="w-full grid grid-cols-2 gap-8 lg:grid-cols-4 lg:flex-1">
+              {footer.columns.map((column, index) => (
+                <div key={index}>
+                  <h4 className="font-semibold mb-4">{column.title}</h4>
+                  <ul className="space-y-3">
+                    {column.links?.map((item, linkIndex) => (
+                      <li key={linkIndex}>
+                        {item.url.startsWith("/") ? (
+                          <Link
+                            href={item.url}
+                            className="text-background/70 hover:text-background transition-colors"
+                          >
+                            {item.label}
+                          </Link>
+                        ) : (
+                          <a
+                            href={item.url}
+                            className="text-background/70 hover:text-background transition-colors"
+                            target={/^(https?:)?\/\//.test(item.url) ? "_blank" : undefined}
+                            rel={/^(https?:)?\/\//.test(item.url) ? "noopener noreferrer" : undefined}
+                          >
+                            {item.label}
+                          </a>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
 
         <div className="pt-8 border-t !border-background/10 flex flex-col md:flex-row justify-between items-center gap-4">
