@@ -75,7 +75,7 @@ export default function ContactSectionBlock({ block }: ContactSectionBlockProps)
 
   return (
     <section className="py-16 lg:py-24">
-      <div className="container mx-autor">
+      <div className="container mx-auto px-4 md:px-0">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left: Contact Form */}
           <div className="bg-card p-8 rounded-2xl border border-border">
