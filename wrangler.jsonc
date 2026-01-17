@@ -30,8 +30,8 @@
   "d1_databases": [
     {
       "binding": "D1",
-      "database_id": "280108e1-cdb7-4c31-a018-c0544bb0d154",
-      "database_name": "pickhero-site",
+      "database_id": "2d4507d4-f6a9-4a7c-8eb8-dea637aa992b",
+      "database_name": "pickhero-site-eu",
       "remote": true,
     },
   ],
