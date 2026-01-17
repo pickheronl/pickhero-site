@@ -21,6 +21,10 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS",
   },
+  "vars": {
+    "EMAIL_FROM": "hello@pickhero.nl",
+    "NOTIFICATION_EMAIL": "hello@pickhero.nl"
+  },
   "observability": {
     "logs": {
       "enabled": false,
