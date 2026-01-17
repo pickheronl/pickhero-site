@@ -1245,6 +1245,9 @@ export interface Navigation {
 export interface Footer {
   id: number;
   description?: string | null;
+  address?: string | null;
+  phone?: string | null;
+  email?: string | null;
   columns?:
     | {
         title: string;
@@ -1269,13 +1272,6 @@ export interface Footer {
    * Gebruik {{year}} voor het huidige jaar
    */
   copyright?: string | null;
-  legalLinks?:
-    | {
-        label: string;
-        url: string;
-        id?: string | null;
-      }[]
-    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1355,6 +1351,9 @@ export interface NavigationSelect<T extends boolean = true> {
  */
 export interface FooterSelect<T extends boolean = true> {
   description?: T;
+  address?: T;
+  phone?: T;
+  email?: T;
   columns?:
     | T
     | {
@@ -1376,13 +1375,6 @@ export interface FooterSelect<T extends boolean = true> {
         id?: T;
       };
   copyright?: T;
-  legalLinks?:
-    | T
-    | {
-        label?: T;
-        url?: T;
-        id?: T;
-      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
