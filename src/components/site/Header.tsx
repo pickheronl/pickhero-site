@@ -62,8 +62,8 @@ const Header = ({ navigation }: HeaderProps) => {
               src="/images/pickero-logo.svg"
               alt="PickHero"
               width={140}
-              height={35}
-              className="h-[35px] w-auto"
+              height={28}
+              className="h-[28px] w-auto"
             />
           </Link>
 
