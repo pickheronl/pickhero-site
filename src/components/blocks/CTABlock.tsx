@@ -13,7 +13,7 @@ export default function CTABlock({ block }: { block: CTABlockType }) {
   const ctaButton = showButton ? (
     <Button
       size="lg"
-      className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+      variant="ctaPink"
     >
       {block.ctaText}
       <ArrowRight className="ml-2" />

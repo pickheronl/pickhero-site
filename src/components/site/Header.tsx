@@ -110,7 +110,7 @@ const Header = ({ navigation }: HeaderProps) => {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
             <TrialFormDialog>
-              <Button variant="hero">{navigation?.ctaText || 'Gratis proberen'}</Button>
+              <Button variant="headerCta">{navigation?.ctaText || 'Gratis proberen'}</Button>
             </TrialFormDialog>
           </div>
 
@@ -176,7 +176,7 @@ const Header = ({ navigation }: HeaderProps) => {
               
               <div className="flex flex-col gap-3 pt-4 border-t border-border mt-2">
                 <TrialFormDialog>
-                  <Button variant="hero" className="w-full">{navigation?.ctaText || 'Gratis proberen'}</Button>
+                  <Button variant="headerCta" className="w-full">{navigation?.ctaText || 'Gratis proberen'}</Button>
                 </TrialFormDialog>
               </div>
             </nav>
