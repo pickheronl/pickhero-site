@@ -5,6 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import TrialFormDialog from "./TrialFormDialog";
 import type { Navigation, Page } from "@/payload-types";
 
@@ -64,50 +70,40 @@ const Header = ({ navigation }: HeaderProps) => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item, index) => (
-              <div key={index} className="relative group">
-                {item.hasSubmenu && item.submenuItems && item.submenuItems.length > 0 ? (
-                  // Item with submenu
-                  <>
-                    <button
-                      className="flex items-center gap-1 text-foreground/80 hover:text-primary font-medium transition-colors duration-200"
-                    >
-                      {item.label}
-                      <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
-                    </button>
-                    {/* Dropdown */}
-                    <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                      <div className="bg-card border border-border rounded-xl shadow-lg p-2 min-w-[220px]">
-                        {item.submenuItems.map((subItem, subIndex) => (
-                          <Link
-                            key={subIndex}
-                            href={getLink(subItem)}
-                            target={isExternalLink(subItem) ? '_blank' : undefined}
-                            rel={isExternalLink(subItem) ? 'noopener noreferrer' : undefined}
-                            className="block px-4 py-3 rounded-lg hover:bg-muted transition-colors"
-                          >
-                            <span className="font-medium text-foreground">{subItem.label}</span>
-                            {subItem.description && (
-                              <span className="block text-sm text-muted-foreground mt-0.5">
-                                {subItem.description}
-                              </span>
-                            )}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  // Regular link
-                  <Link
-                    href={getLink(item)}
-                    target={isExternalLink(item) ? '_blank' : undefined}
-                    rel={isExternalLink(item) ? 'noopener noreferrer' : undefined}
-                    className="text-foreground/80 hover:text-primary font-medium transition-colors duration-200"
-                  >
+              item.hasSubmenu && item.submenuItems && item.submenuItems.length > 0 ? (
+                // Item with submenu - using Radix DropdownMenu
+                <DropdownMenu key={index}>
+                  <DropdownMenuTrigger className="flex items-center gap-1 text-foreground/80 hover:text-primary font-medium transition-colors duration-200">
                     {item.label}
-                  </Link>
-                )}
-              </div>
+                    <ChevronDown className="w-4 h-4" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="bg-card border-border">
+                    {item.submenuItems.map((subItem, subIndex) => (
+                      <DropdownMenuItem key={subIndex} asChild>
+                        <Link
+                          href={getLink(subItem)}
+                          target={isExternalLink(subItem) ? '_blank' : undefined}
+                          rel={isExternalLink(subItem) ? 'noopener noreferrer' : undefined}
+                          className="cursor-pointer"
+                        >
+                          {subItem.label}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                // Regular link
+                <Link
+                  key={index}
+                  href={getLink(item)}
+                  target={isExternalLink(item) ? '_blank' : undefined}
+                  rel={isExternalLink(item) ? 'noopener noreferrer' : undefined}
+                  className="text-foreground/80 hover:text-primary font-medium transition-colors duration-200"
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
           </nav>
 

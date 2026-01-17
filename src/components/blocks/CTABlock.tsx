@@ -8,15 +8,17 @@ import { parseTitle } from '@/lib/parseTitle'
 type CTABlockType = Extract<NonNullable<Page['blocks']>[number], { blockType: 'cta' }>
 
 export default function CTABlock({ block }: { block: CTABlockType }) {
-  const ctaButton = (
+  const showButton = block.ctaText && block.ctaText.trim() !== ''
+
+  const ctaButton = showButton ? (
     <Button
       size="lg"
       className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
     >
-      {block.ctaText || 'Start gratis proefperiode'}
+      {block.ctaText}
       <ArrowRight className="ml-2" />
     </Button>
-  )
+  ) : null
 
   return (
     <section className="py-20 lg:py-32 bg-gradient-subtle">
@@ -29,13 +31,15 @@ export default function CTABlock({ block }: { block: CTABlockType }) {
             {block.description}
           </p>
         )}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          {block.ctaLink ? (
-            <Link href={block.ctaLink}>{ctaButton}</Link>
-          ) : (
-            <TrialFormDialog>{ctaButton}</TrialFormDialog>
-          )}
-        </div>
+        {showButton && (
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {block.ctaLink ? (
+              <Link href={block.ctaLink}>{ctaButton}</Link>
+            ) : (
+              <TrialFormDialog>{ctaButton}</TrialFormDialog>
+            )}
+          </div>
+        )}
       </div>
     </section>
   )
