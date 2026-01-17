@@ -6,7 +6,7 @@ export default function StatsBlock({ block }: { block: StatsBlockType }) {
   if (!block.stats || block.stats.length === 0) return null
 
   return (
-    <section className="py-16 lg:py-24 bg-ink relative overflow-hidden">
+    <section className="pb-16 lg:py-24 bg-ink relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-1/4 w-64 h-64 bg-background rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent rounded-full blur-3xl" />
