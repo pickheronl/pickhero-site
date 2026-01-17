@@ -152,7 +152,7 @@ export default function PricingPageBlock({ block }: { block: PricingPageBlockTyp
 
         {/* Filters Section */}
         {block.showFilters && (
-          <div className="bg-[#FF4075]/10 border border-[#FF4075]/30 rounded-2xl p-6 mb-12 max-w-4xl mx-auto">
+          <div className="bg-primary/10 border border-primary/30 rounded-2xl p-6 mb-12 max-w-4xl mx-auto">
             <div className="flex items-center gap-2 mb-6">
               <Filter className="w-5 h-5 text-primary" />
               <h3 className="font-semibold text-lg">Vind het juiste plan</h3>
@@ -221,7 +221,7 @@ export default function PricingPageBlock({ block }: { block: PricingPageBlockTyp
                       onClick={() => toggleFeature(feature.id)}
                       className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                         isSelected
-                          ? 'bg-[#FF4075] text-background'
+                          ? 'bg-primary text-background'
                           : 'bg-muted text-foreground hover:bg-muted/80'
                       }`}
                     >

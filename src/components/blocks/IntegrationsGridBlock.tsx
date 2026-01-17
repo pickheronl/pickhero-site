@@ -188,7 +188,7 @@ export default function IntegrationsGridBlock({
               sandbox omgeving beschikbaar.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button variant="secondary" size="lg" asChild>
+              <Button variant="white" size="lg" asChild>
                 <a href="https://docs.pickhero.nl/" target="_blank" rel="noopener noreferrer">
                   API Documentatie
                 </a>
