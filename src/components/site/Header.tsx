@@ -113,14 +113,6 @@ const Header = ({ navigation }: HeaderProps) => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            {navigation?.loginUrl && (
-              <a
-                href={navigation.loginUrl}
-                className="text-foreground/80 hover:text-primary font-medium transition-colors duration-200"
-              >
-                {navigation.loginText || 'Inloggen'}
-              </a>
-            )}
             <TrialFormDialog>
               <Button variant="hero">{navigation?.ctaText || 'Gratis proberen'}</Button>
             </TrialFormDialog>
@@ -187,14 +179,6 @@ const Header = ({ navigation }: HeaderProps) => {
               ))}
               
               <div className="flex flex-col gap-3 pt-4 border-t border-border mt-2">
-                {navigation?.loginUrl && (
-                  <a
-                    href={navigation.loginUrl}
-                    className="text-foreground/80 hover:text-primary font-medium py-2 transition-colors"
-                  >
-                    {navigation.loginText || 'Inloggen'}
-                  </a>
-                )}
                 <TrialFormDialog>
                   <Button variant="hero" className="w-full">{navigation?.ctaText || 'Gratis proberen'}</Button>
                 </TrialFormDialog>
