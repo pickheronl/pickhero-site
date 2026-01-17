@@ -1,5 +1,6 @@
 import type { Page } from '@/payload-types'
 import { parseTitle } from '@/lib/parseTitle'
+import { RichText } from '@payloadcms/richtext-lexical/react'
 
 type StoryBlockType = Extract<NonNullable<Page['blocks']>[number], { blockType: 'story' }>
 
@@ -18,21 +19,9 @@ export default function StoryBlock({ block }: StoryBlockProps) {
             </h2>
           )}
 
-          {block.paragraphs && block.paragraphs.length > 0 && (
-            <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
-              {block.paragraphs.map((item, index) => {
-                const isHighlighted = item.isHighlighted
-                return (
-                  <p
-                    key={index}
-                    className={
-                      isHighlighted ? 'text-foreground font-medium text-xl' : undefined
-                    }
-                  >
-                    {item.text}
-                  </p>
-                )
-              })}
+          {block.content && (
+            <div className="prose prose-lg max-w-none text-muted-foreground">
+              <RichText data={block.content} />
             </div>
           )}
         </div>

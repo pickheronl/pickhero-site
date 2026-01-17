@@ -695,23 +695,9 @@ export const Pages: CollectionConfig = {
               },
             },
             {
-              name: 'paragraphs',
-              type: 'array',
-              label: 'Paragrafen',
-              fields: [
-                {
-                  name: 'text',
-                  type: 'textarea',
-                  required: true,
-                  label: 'Tekst',
-                },
-                {
-                  name: 'isHighlighted',
-                  type: 'checkbox',
-                  label: 'Highlight (grotere, donkere tekst)',
-                  defaultValue: false,
-                },
-              ],
+              name: 'content',
+              type: 'richText',
+              label: 'Inhoud',
             },
           ],
         },

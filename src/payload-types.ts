@@ -450,13 +450,21 @@ export interface Page {
              * Gebruik *tekst* voor gekleurde highlight
              */
             title?: string | null;
-            paragraphs?:
-              | {
-                  text: string;
-                  isHighlighted?: boolean | null;
-                  id?: string | null;
-                }[]
-              | null;
+            content?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'story';
@@ -1014,13 +1022,7 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               title?: T;
-              paragraphs?:
-                | T
-                | {
-                    text?: T;
-                    isHighlighted?: T;
-                    id?: T;
-                  };
+              content?: T;
               id?: T;
               blockName?: T;
             };
