@@ -7,11 +7,27 @@ import {
 } from '@/components/ui/accordion'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { parseTitle } from '@/lib/parseTitle'
+import { getPayload } from 'payload'
+import config from '@payload-config'
 
 type FAQBlockType = Extract<NonNullable<Page['blocks']>[number], { blockType: 'faq' }>
 
-export default function FAQBlock({ block }: { block: FAQBlockType }) {
-  const items = block.items as Faq[] | null
+export default async function FAQBlock({ block }: { block: FAQBlockType }) {
+  let items = block.items as Faq[] | null
+
+  // If no items selected, fetch all active FAQ items
+  if (!items || items.length === 0) {
+    const payload = await getPayload({ config })
+    const { docs } = await payload.find({
+      collection: 'faq',
+      where: {
+        isActive: { equals: true },
+      },
+      sort: 'sortOrder',
+      limit: 100,
+    })
+    items = docs
+  }
 
   if (!items || items.length === 0) return null
 
