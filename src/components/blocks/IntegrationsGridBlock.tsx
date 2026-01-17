@@ -71,14 +71,14 @@ export default function IntegrationsGridBlock({
 
   return (
     <>
-      <section className="py-20 lg:py-32 bg-background">
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-gradient-subtle">
         <div className="container mx-auto px-4 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-12">
+          <div className="text-center max-w-4xl mx-auto">
             {badge && (
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-medium mb-6">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium mb-6">
                 {badge}
-              </div>
+              </span>
             )}
             {title && (
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
@@ -94,37 +94,43 @@ export default function IntegrationsGridBlock({
               <TrialFormDialog>{ctaButton}</TrialFormDialog>
             )}
           </div>
+        </div>
+      </section>
 
-          {/* Category Filter */}
-          {showFilters && availableCategories.length > 1 && (
-            <div className="py-8 border-b border-border mb-12">
-              <div className="flex flex-wrap justify-center gap-3">
-                <Button
-                  variant={activeCategory === 'all' ? 'default' : 'outline'}
-                  onClick={() => setActiveCategory('all')}
-                  className="rounded-full"
-                >
-                  Alle integraties
-                </Button>
-                {availableCategories.map((category) => {
-                  const CategoryIcon = categoryInfo[category]?.icon || Package
-                  return (
-                    <Button
-                      key={category}
-                      variant={activeCategory === category ? 'default' : 'outline'}
-                      onClick={() => setActiveCategory(category)}
-                      className="rounded-full gap-2"
-                    >
-                      <CategoryIcon className="w-4 h-4" />
-                      {categoryInfo[category]?.label || category}
-                    </Button>
-                  )
-                })}
-              </div>
+      {/* Category Filter - Sticky on scroll */}
+      {showFilters && availableCategories.length > 1 && (
+        <section className="py-8 border-b border-border bg-background sticky top-20 z-40">
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button
+                variant={activeCategory === 'all' ? 'default' : 'outline'}
+                onClick={() => setActiveCategory('all')}
+                className="rounded-full"
+              >
+                Alle integraties
+              </Button>
+              {availableCategories.map((category) => {
+                const CategoryIcon = categoryInfo[category]?.icon || Package
+                return (
+                  <Button
+                    key={category}
+                    variant={activeCategory === category ? 'default' : 'outline'}
+                    onClick={() => setActiveCategory(category)}
+                    className="rounded-full gap-2"
+                  >
+                    <CategoryIcon className="w-4 h-4" />
+                    {categoryInfo[category]?.label || category}
+                  </Button>
+                )
+              })}
             </div>
-          )}
+          </div>
+        </section>
+      )}
 
-          {/* Integrations Grid */}
+      {/* Integrations Grid */}
+      <section className="py-20 lg:py-32">
+        <div className="container mx-auto px-4 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredIntegrations.map((integration) => {
               const logo = integration.logo as Media | null
