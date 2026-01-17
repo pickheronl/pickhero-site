@@ -404,6 +404,16 @@ export interface Page {
             blockType: 'contactInfo';
           }
         | {
+            formTitle?: string | null;
+            formDescription?: string | null;
+            submitButtonText?: string | null;
+            infoTitle?: string | null;
+            showMap?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactSection';
+          }
+        | {
             /**
              * Gebruik *tekst* voor gekleurde highlight
              */
@@ -988,6 +998,17 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               title?: T;
+              showMap?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contactSection?:
+          | T
+          | {
+              formTitle?: T;
+              formDescription?: T;
+              submitButtonText?: T;
+              infoTitle?: T;
               showMap?: T;
               id?: T;
               blockName?: T;

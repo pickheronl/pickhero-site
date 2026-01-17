@@ -547,7 +547,7 @@ export const Pages: CollectionConfig = {
             },
           ],
         },
-        // Contact Info Block
+        // Contact Info Block (separate)
         {
           slug: 'contactInfo',
           labels: {
@@ -559,6 +559,45 @@ export const Pages: CollectionConfig = {
               name: 'title',
               type: 'text',
               label: 'Titel',
+              defaultValue: 'Contactgegevens',
+            },
+            {
+              name: 'showMap',
+              type: 'checkbox',
+              label: 'Toon Google Maps',
+              defaultValue: true,
+            },
+          ],
+        },
+        // Contact Section Block (combined form + info in grid)
+        {
+          slug: 'contactSection',
+          labels: {
+            singular: 'Contact Sectie',
+            plural: 'Contact Secties',
+          },
+          fields: [
+            {
+              name: 'formTitle',
+              type: 'text',
+              label: 'Formulier Titel',
+              defaultValue: 'Stuur ons een bericht',
+            },
+            {
+              name: 'formDescription',
+              type: 'textarea',
+              label: 'Formulier Beschrijving',
+            },
+            {
+              name: 'submitButtonText',
+              type: 'text',
+              label: 'Verzendknop tekst',
+              defaultValue: 'Verstuur bericht',
+            },
+            {
+              name: 'infoTitle',
+              type: 'text',
+              label: 'Info Titel',
               defaultValue: 'Contactgegevens',
             },
             {

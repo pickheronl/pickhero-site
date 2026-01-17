@@ -14,6 +14,7 @@ import RichTextBlock from './RichTextBlock'
 import BlogListBlock from './BlogListBlock'
 import ContactFormBlock from './ContactFormBlock'
 import ContactInfoBlock from './ContactInfoBlock'
+import ContactSectionBlock from './ContactSectionBlock'
 import IconCardsBlock from './IconCardsBlock'
 import IntroBlock from './IntroBlock'
 import StoryBlock from './StoryBlock'
@@ -36,6 +37,7 @@ const blockComponents: Record<string, React.ComponentType<{ block: Block }>> = {
   blogList: BlogListBlock as React.ComponentType<{ block: Block }>,
   contactForm: ContactFormBlock as React.ComponentType<{ block: Block }>,
   contactInfo: ContactInfoBlock as React.ComponentType<{ block: Block }>,
+  contactSection: ContactSectionBlock as React.ComponentType<{ block: Block }>,
   iconCards: IconCardsBlock as React.ComponentType<{ block: Block }>,
   intro: IntroBlock as React.ComponentType<{ block: Block }>,
   story: StoryBlock as React.ComponentType<{ block: Block }>,
