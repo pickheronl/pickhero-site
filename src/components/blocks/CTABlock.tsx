@@ -19,9 +19,9 @@ export default function CTABlock({ block }: { block: CTABlockType }) {
   )
 
   return (
-    <section className="py-20 lg:py-32 bg-background">
+    <section className="py-20 lg:py-32 bg-gradient-subtle">
       <div className="container mx-auto px-4 lg:px-8 text-center">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
           {parseTitle(block.title)}
         </h2>
         {block.description && (
