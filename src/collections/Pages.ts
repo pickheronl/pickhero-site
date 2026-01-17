@@ -654,6 +654,115 @@ export const Pages: CollectionConfig = {
             },
           ],
         },
+        // Intro Block (for about page header)
+        {
+          slug: 'intro',
+          labels: {
+            singular: 'Intro Sectie',
+            plural: 'Intro Secties',
+          },
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              required: true,
+              label: 'Titel',
+              admin: {
+                description: 'Gebruik *tekst* voor gekleurde highlight',
+              },
+            },
+            {
+              name: 'description',
+              type: 'textarea',
+              label: 'Beschrijving',
+            },
+          ],
+        },
+        // Story Block (for about page)
+        {
+          slug: 'story',
+          labels: {
+            singular: 'Verhaal Sectie',
+            plural: 'Verhaal Secties',
+          },
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              label: 'Titel',
+              admin: {
+                description: 'Gebruik *tekst* voor gekleurde highlight',
+              },
+            },
+            {
+              name: 'paragraphs',
+              type: 'array',
+              label: 'Paragrafen',
+              fields: [
+                {
+                  name: 'text',
+                  type: 'textarea',
+                  required: true,
+                  label: 'Tekst',
+                },
+                {
+                  name: 'isHighlighted',
+                  type: 'checkbox',
+                  label: 'Highlight (grotere, donkere tekst)',
+                  defaultValue: false,
+                },
+              ],
+            },
+          ],
+        },
+        // Pricing Page Block (full pricing page with filters and comparison)
+        {
+          slug: 'pricingPage',
+          labels: {
+            singular: 'Prijzen Pagina',
+            plural: 'Prijzen Pagina\'s',
+          },
+          fields: [
+            {
+              name: 'badge',
+              type: 'text',
+              label: 'Badge',
+              defaultValue: 'Prijzen',
+            },
+            {
+              name: 'title',
+              type: 'text',
+              label: 'Titel',
+              admin: {
+                description: 'Gebruik *tekst* voor gekleurde highlight',
+              },
+            },
+            {
+              name: 'subtitle',
+              type: 'textarea',
+              label: 'Ondertitel',
+            },
+            {
+              name: 'plans',
+              type: 'relationship',
+              relationTo: 'pricing-plans',
+              hasMany: true,
+              label: 'Prijsplannen',
+            },
+            {
+              name: 'showFilters',
+              type: 'checkbox',
+              label: 'Toon filters (orders/gebruikers sliders)',
+              defaultValue: true,
+            },
+            {
+              name: 'showComparison',
+              type: 'checkbox',
+              label: 'Toon vergelijkingstabel',
+              defaultValue: true,
+            },
+          ],
+        },
       ],
     },
     {

@@ -435,6 +435,46 @@ export interface Page {
             blockName?: string | null;
             blockType: 'iconCards';
           }
+        | {
+            /**
+             * Gebruik *tekst* voor gekleurde highlight
+             */
+            title: string;
+            description?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'intro';
+          }
+        | {
+            /**
+             * Gebruik *tekst* voor gekleurde highlight
+             */
+            title?: string | null;
+            paragraphs?:
+              | {
+                  text: string;
+                  isHighlighted?: boolean | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'story';
+          }
+        | {
+            badge?: string | null;
+            /**
+             * Gebruik *tekst* voor gekleurde highlight
+             */
+            title?: string | null;
+            subtitle?: string | null;
+            plans?: (number | PricingPlan)[] | null;
+            showFilters?: boolean | null;
+            showComparison?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'pricingPage';
+          }
       )[]
     | null;
   seo?: {
@@ -959,6 +999,40 @@ export interface PagesSelect<T extends boolean = true> {
                   };
               columns?: T;
               backgroundColor?: T;
+              id?: T;
+              blockName?: T;
+            };
+        intro?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              id?: T;
+              blockName?: T;
+            };
+        story?:
+          | T
+          | {
+              title?: T;
+              paragraphs?:
+                | T
+                | {
+                    text?: T;
+                    isHighlighted?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        pricingPage?:
+          | T
+          | {
+              badge?: T;
+              title?: T;
+              subtitle?: T;
+              plans?: T;
+              showFilters?: T;
+              showComparison?: T;
               id?: T;
               blockName?: T;
             };

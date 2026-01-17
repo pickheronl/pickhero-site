@@ -75,7 +75,7 @@ export default function IconCardsBlock({ block }: IconCardsBlockProps) {
         )}
 
         {/* Cards Grid */}
-        <div className={cn('grid gap-8 max-w-5xl mx-auto', gridCols[columns] || gridCols['2'])}>
+        <div className={cn('grid gap-8 max-w-4xl mx-auto', gridCols[columns] || gridCols['2'])}>
           {cards.map((card, index) => {
             const Icon = iconMap[card.icon] || Target
 
