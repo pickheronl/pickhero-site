@@ -207,31 +207,6 @@ export default function PricingPageBlock({ block }: { block: PricingPageBlockTyp
                 />
               </div>
             </div>
-
-            {/* Feature Filters */}
-            <div>
-              <Label className="mb-3 block">Belangrijke functies:</Label>
-              <div className="flex flex-wrap gap-2">
-                {allFeatures.map((feature) => {
-                  const Icon = feature.icon
-                  const isSelected = selectedFeatures.includes(feature.id)
-                  return (
-                    <button
-                      key={feature.id}
-                      onClick={() => toggleFeature(feature.id)}
-                      className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                        isSelected
-                          ? 'bg-primary text-background'
-                          : 'bg-muted text-foreground hover:bg-muted/80'
-                      }`}
-                    >
-                      <Icon className="w-4 h-4" />
-                      {feature.label}
-                    </button>
-                  )
-                })}
-              </div>
-            </div>
           </div>
         )}
 
