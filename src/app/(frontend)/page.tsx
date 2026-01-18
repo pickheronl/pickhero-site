@@ -1,25 +1,27 @@
 import { getPayload } from 'payload'
 import config from '@payload-config'
+import { unstable_cache } from 'next/cache'
 import HeaderWrapper from '@/components/site/HeaderWrapper'
-
-// Cache forever, purge on-demand via Payload hooks
-export const revalidate = false
 import FooterWrapper from '@/components/site/FooterWrapper'
 import RenderBlocks from '@/components/blocks/RenderBlocks'
 
+const getHomePage = unstable_cache(
+  async () => {
+    const payload = await getPayload({ config })
+    const { docs: pages } = await payload.find({
+      collection: 'pages',
+      where: { slug: { equals: 'home' } },
+      depth: 2,
+      limit: 1,
+    })
+    return pages[0] || null
+  },
+  ['page-home'],
+  { tags: ['page-home', 'pages'] }
+)
+
 export default async function HomePage() {
-  const payload = await getPayload({ config })
-
-  const { docs: pages } = await payload.find({
-    collection: 'pages',
-    where: {
-      slug: { equals: 'home' },
-    },
-    depth: 2,
-    limit: 1,
-  })
-
-  const page = pages[0]
+  const page = await getHomePage()
 
   if (!page) {
     return (

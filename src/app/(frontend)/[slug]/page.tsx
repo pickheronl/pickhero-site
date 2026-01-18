@@ -1,18 +1,33 @@
 import { getPayload } from 'payload'
 import config from '@payload-config'
+import { unstable_cache } from 'next/cache'
 import { notFound } from 'next/navigation'
 import HeaderWrapper from '@/components/site/HeaderWrapper'
 import FooterWrapper from '@/components/site/FooterWrapper'
 import RenderBlocks from '@/components/blocks/RenderBlocks'
 
-// Cache forever, purge on-demand via Payload hooks
-export const revalidate = false
 // Allow dynamic paths not returned by generateStaticParams to be cached on-demand
 export const dynamicParams = true
 
 interface PageProps {
   params: Promise<{ slug: string }>
 }
+
+const getPageBySlug = (slug: string) =>
+  unstable_cache(
+    async () => {
+      const payload = await getPayload({ config })
+      const { docs: pages } = await payload.find({
+        collection: 'pages',
+        where: { slug: { equals: slug } },
+        depth: 2,
+        limit: 1,
+      })
+      return pages[0] || null
+    },
+    [`page-${slug}`],
+    { tags: [`page-${slug}`, 'pages'] }
+  )
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config })
@@ -29,18 +44,7 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params
-  const payload = await getPayload({ config })
-
-  const { docs: pages } = await payload.find({
-    collection: 'pages',
-    where: {
-      slug: { equals: slug },
-    },
-    depth: 2,
-    limit: 1,
-  })
-
-  const page = pages[0]
+  const page = await getPageBySlug(slug)()
 
   if (!page) {
     notFound()
