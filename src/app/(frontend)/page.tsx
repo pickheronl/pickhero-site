@@ -38,7 +38,7 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       <HeaderWrapper />
-      <main className="pt-20">
+      <main className="pt-20 bg-gradient-subtle">
         <RenderBlocks blocks={page.blocks} />
       </main>
       <FooterWrapper />

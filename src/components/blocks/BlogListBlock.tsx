@@ -46,7 +46,7 @@ export default async function BlogListBlock({ block }: { block: BlogListBlockTyp
   const otherPosts = block.showFeatured ? posts.slice(1) : posts
 
   return (
-    <section className="py-20 lg:py-32 bg-background">
+    <section className="py-20 lg:py-32 ">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header */}
         {(block.title || block.subtitle) && (

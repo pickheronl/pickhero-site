@@ -90,7 +90,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     <div className="min-h-screen bg-background">
       <HeaderWrapper />
 
-      <main className="pt-20">
+      <main className="pt-20 bg-gradient-subtle">
         {/* Hero Section */}
         <section className="py-12 lg:py-20">
           <div className="container mx-auto px-4 lg:px-8">
@@ -113,9 +113,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
               <h1 className="text-3xl lg:text-5xl font-bold text-foreground mb-6">{post.title}</h1>
 
-              {post.excerpt && (
-                <p className="text-xl text-muted-foreground mb-8">{post.excerpt}</p>
-              )}
+              {post.excerpt && <p className="text-xl text-muted-foreground mb-8">{post.excerpt}</p>}
 
               <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground pb-8 border-b border-border">
                 {post.author && (

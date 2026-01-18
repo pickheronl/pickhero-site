@@ -9,7 +9,7 @@ interface IntroBlockProps {
 
 export default function IntroBlock({ block }: IntroBlockProps) {
   return (
-    <section className="py-20 lg:py-32 bg-gradient-to-b from-primary/5 to-background">
+    <section className="py-20 lg:py-32">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           {block.title && (

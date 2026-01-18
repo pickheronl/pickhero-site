@@ -4,7 +4,7 @@ import TrialFormDialog from "./TrialFormDialog";
 
 const CTASection = () => {
   return (
-    <section className="py-20 lg:py-32 bg-background">
+    <section className="py-20 lg:py-32">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="relative bg-ink rounded-3xl p-12 lg:p-20 text-center overflow-hidden">
           <div className="absolute inset-0 opacity-20">
