@@ -72,7 +72,7 @@ export default function IntegrationsGridBlock({
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-gradient-subtle">
+      <section className="py-20 lg:py-32  bg-gradient-subtle">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             {badge && (
@@ -213,64 +213,61 @@ export default function IntegrationsGridBlock({
         onOpenChange={(open) => !open && setSelectedIntegration(null)}
       >
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-          {selectedIntegration && (() => {
-            const logo = selectedIntegration.logo as Media | null
-            const CategoryIcon = getCategoryIcon(selectedIntegration.category)
+          {selectedIntegration &&
+            (() => {
+              const logo = selectedIntegration.logo as Media | null
+              const CategoryIcon = getCategoryIcon(selectedIntegration.category)
 
-            return (
-              <>
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="h-16 w-32 flex items-center bg-card rounded-lg p-3 border border-border">
-                    {logo?.url ? (
-                      <Image
-                        src={logo.url}
-                        alt={selectedIntegration.name}
-                        width={128}
-                        height={64}
-                        className="max-h-full max-w-full object-contain"
-                      />
-                    ) : (
-                      <div className="h-full w-full flex items-center justify-center">
-                        <CategoryIcon className="w-8 h-8 text-muted-foreground" />
-                      </div>
+              return (
+                <>
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="h-16 w-32 flex items-center bg-card rounded-lg p-3 border border-border">
+                      {logo?.url ? (
+                        <Image
+                          src={logo.url}
+                          alt={selectedIntegration.name}
+                          width={128}
+                          height={64}
+                          className="max-h-full max-w-full object-contain"
+                        />
+                      ) : (
+                        <div className="h-full w-full flex items-center justify-center">
+                          <CategoryIcon className="w-8 h-8 text-muted-foreground" />
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <DialogTitle className="text-2xl font-bold mb-1">
+                        {selectedIntegration.name}
+                      </DialogTitle>
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent text-accent-foreground text-xs font-medium">
+                        <CategoryIcon className="w-3 h-3" />
+                        {categoryInfo[selectedIntegration.category as IntegrationCategory]?.label ||
+                          'Integratie'}
+                      </span>
+                    </div>
+                  </div>
+
+                  <DialogDescription className="text-base text-muted-foreground mb-6">
+                    {selectedIntegration.description}
+                  </DialogDescription>
+
+                  <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-border">
+                    <TrialFormDialog>
+                      <Button className="flex-1">Aan de slag</Button>
+                    </TrialFormDialog>
+                    {selectedIntegration.url && (
+                      <Button variant="outline" className="flex-1 gap-2" asChild>
+                        <a href={selectedIntegration.url} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="w-4 h-4" />
+                          Bezoek website
+                        </a>
+                      </Button>
                     )}
                   </div>
-                  <div className="flex-1">
-                    <DialogTitle className="text-2xl font-bold mb-1">
-                      {selectedIntegration.name}
-                    </DialogTitle>
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent text-accent-foreground text-xs font-medium">
-                      <CategoryIcon className="w-3 h-3" />
-                      {categoryInfo[selectedIntegration.category as IntegrationCategory]?.label ||
-                        'Integratie'}
-                    </span>
-                  </div>
-                </div>
-
-                <DialogDescription className="text-base text-muted-foreground mb-6">
-                  {selectedIntegration.description}
-                </DialogDescription>
-
-                <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-border">
-                  <TrialFormDialog>
-                    <Button className="flex-1">Aan de slag</Button>
-                  </TrialFormDialog>
-                  {selectedIntegration.url && (
-                    <Button variant="outline" className="flex-1 gap-2" asChild>
-                      <a
-                        href={selectedIntegration.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        Bezoek website
-                      </a>
-                    </Button>
-                  )}
-                </div>
-              </>
-            )
-          })()}
+                </>
+              )
+            })()}
         </DialogContent>
       </Dialog>
     </>
