@@ -52,9 +52,9 @@ const Footer = ({ footer }: FooterProps) => {
             <Image
               src="/images/pickero-logo-white.svg"
               alt="PickHero"
-              width={160}
-              height={56}
-              className="h-14 w-auto mb-6"
+              width={158}
+              height={28}
+              className="h-[28px] w-auto mb-6"
             />
             {footer?.description && (
               <p className="text-background/70 mb-4 max-w-sm">

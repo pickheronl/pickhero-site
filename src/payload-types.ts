@@ -389,6 +389,12 @@ export interface Page {
             blockType: 'blogList';
           }
         | {
+            badge?: string | null;
+            /**
+             * Gebruik *tekst* voor gekleurde highlight
+             */
+            title?: string | null;
+            subtitle?: string | null;
             formTitle?: string | null;
             formDescription?: string | null;
             submitButtonText?: string | null;
@@ -973,6 +979,9 @@ export interface PagesSelect<T extends boolean = true> {
         contactSection?:
           | T
           | {
+              badge?: T;
+              title?: T;
+              subtitle?: T;
               formTitle?: T;
               formDescription?: T;
               submitButtonText?: T;

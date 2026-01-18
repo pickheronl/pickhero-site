@@ -529,6 +529,26 @@ export const Pages: CollectionConfig = {
           },
           fields: [
             {
+              name: 'badge',
+              type: 'text',
+              label: 'Badge tekst',
+              defaultValue: 'Contact',
+            },
+            {
+              name: 'title',
+              type: 'text',
+              label: 'Titel',
+              defaultValue: 'Neem contact met ons op',
+              admin: {
+                description: 'Gebruik *tekst* voor gekleurde highlight',
+              },
+            },
+            {
+              name: 'subtitle',
+              type: 'textarea',
+              label: 'Ondertitel',
+            },
+            {
               name: 'formTitle',
               type: 'text',
               label: 'Formulier Titel',

@@ -73,9 +73,40 @@ export default function ContactSectionBlock({ block }: ContactSectionBlockProps)
 
   const { address, email, phone, openingHours, mapsEmbedUrl } = contactSettings || {}
 
+  // Helper to render title with *highlighted* text
+  const renderTitle = (title: string) => {
+    const parts = title.split(/\*(.*?)\*/)
+    return parts.map((part, index) =>
+      index % 2 === 1 ? (
+        <span key={index} className="text-gradient">
+          {part}
+        </span>
+      ) : (
+        part
+      ),
+    )
+  }
+
   return (
     <section className="py-16 lg:py-24">
-      <div className="container mx-auto px-4 md:px-0">
+      {(block.badge || block.title || block.subtitle) && (
+        <div className="text-center mb-16">
+          {block.badge && (
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-medium mb-6">
+              {block.badge}
+            </div>
+          )}
+          {block.title && (
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+              {renderTitle(block.title)}
+            </h2>
+          )}
+          {block.subtitle && (
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{block.subtitle}</p>
+          )}
+        </div>
+      )}
+      <div className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left: Contact Form */}
           <div className="bg-card p-8 rounded-2xl border border-border">
