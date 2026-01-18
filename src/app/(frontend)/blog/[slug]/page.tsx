@@ -10,11 +10,16 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 import TrialFormDialog from '@/components/site/TrialFormDialog'
 import type { Post } from '@/payload-types'
 
+// Cache forever, purge on-demand via Payload hooks
+export const revalidate = false
+// Allow dynamic paths not returned by generateStaticParams to be cached on-demand
+export const dynamicParams = true
+
 interface PageProps {
   params: Promise<{ slug: string }>
 }
 
-const categoryLabels: Record<string, string> = {
+const categoryLabels:
   warehouse: 'Warehouse',
   ecommerce: 'E-commerce',
   integrations: 'Integraties',

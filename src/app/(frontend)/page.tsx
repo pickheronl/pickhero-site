@@ -1,6 +1,9 @@
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import HeaderWrapper from '@/components/site/HeaderWrapper'
+
+// Cache forever, purge on-demand via Payload hooks
+export const revalidate = false
 import FooterWrapper from '@/components/site/FooterWrapper'
 import RenderBlocks from '@/components/blocks/RenderBlocks'
 

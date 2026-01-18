@@ -5,11 +5,16 @@ import HeaderWrapper from '@/components/site/HeaderWrapper'
 import FooterWrapper from '@/components/site/FooterWrapper'
 import RenderBlocks from '@/components/blocks/RenderBlocks'
 
+// Cache forever, purge on-demand via Payload hooks
+export const revalidate = false
+// Allow dynamic paths not returned by generateStaticParams to be cached on-demand
+export const dynamicParams = true
+
 interface PageProps {
   params: Promise<{ slug: string }>
 }
 
-export default async function Page({ params }: PageProps) {
+export async function generateStaticParams() {
   const { slug } = await params
   const payload = await getPayload({ config })
 
