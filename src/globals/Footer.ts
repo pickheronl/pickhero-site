@@ -1,8 +1,12 @@
 import type { GlobalConfig } from 'payload'
+import { revalidateGlobalAfterChange } from '@/hooks/revalidateCache'
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
   label: 'Footer',
+  hooks: {
+    afterChange: [revalidateGlobalAfterChange],
+  },
   admin: {
     description: 'Beheer de footer inhoud',
   },

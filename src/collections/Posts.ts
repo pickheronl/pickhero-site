@@ -1,7 +1,12 @@
 import type { CollectionConfig } from 'payload'
+import { revalidatePostAfterChange, revalidatePostAfterDelete } from '@/hooks/revalidateCache'
 
 export const Posts: CollectionConfig = {
   slug: 'posts',
+  hooks: {
+    afterChange: [revalidatePostAfterChange],
+    afterDelete: [revalidatePostAfterDelete],
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'category', 'publishedAt', 'updatedAt'],

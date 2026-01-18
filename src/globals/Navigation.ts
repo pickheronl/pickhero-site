@@ -1,4 +1,5 @@
 import type { GlobalConfig, Field } from 'payload'
+import { revalidateGlobalAfterChange } from '@/hooks/revalidateCache'
 
 // Reusable link fields for internal/external links
 const linkFields: Field[] = [

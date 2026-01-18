@@ -1,7 +1,12 @@
 import type { CollectionConfig } from 'payload'
+import { revalidatePageAfterChange, revalidatePageAfterDelete } from '@/hooks/revalidateCache'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
+  hooks: {
+    afterChange: [revalidatePageAfterChange],
+    afterDelete: [revalidatePageAfterDelete],
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
