@@ -10,8 +10,6 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 import TrialFormDialog from '@/components/site/TrialFormDialog'
 import type { Post } from '@/payload-types'
 
-export const dynamic = 'force-dynamic'
-
 interface PageProps {
   params: Promise<{ slug: string }>
 }

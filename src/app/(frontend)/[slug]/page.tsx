@@ -5,8 +5,6 @@ import HeaderWrapper from '@/components/site/HeaderWrapper'
 import FooterWrapper from '@/components/site/FooterWrapper'
 import RenderBlocks from '@/components/blocks/RenderBlocks'
 
-export const dynamic = 'force-dynamic'
-
 interface PageProps {
   params: Promise<{ slug: string }>
 }
