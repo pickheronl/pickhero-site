@@ -15,12 +15,26 @@
     "nodejs_compat",
     // Allow to fetch URLs in your app
     // see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#global-fetch-strictly-public
-    "global_fetch_strictly_public",
+    "global_fetch_strictly_public"
   ],
   "assets": {
     "directory": ".open-next/assets",
-    "binding": "ASSETS",
+    "binding": "ASSETS"
   },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "NEXT_CACHE_DO_QUEUE",
+        "class_name": "DOQueueHandler"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["DOQueueHandler"]
+    }
+  ],
   "vars": {
     "EMAIL_FROM": "hello@pickhero.nl",
     "NOTIFICATION_EMAIL": "hello@pickhero.nl"
@@ -36,27 +50,32 @@
       "binding": "D1",
       "database_id": "2d4507d4-f6a9-4a7c-8eb8-dea637aa992b",
       "database_name": "pickhero-site-eu",
-      "remote": true,
+      "remote": true
     },
+    {
+      "binding": "NEXT_TAG_CACHE_D1",
+      "database_id": "e10b5bc1-2372-4a04-8d27-36ca2cdfd6c9",
+      "database_name": "pickhero-site-cache"
+    }
   ],
   "services": [
     // The service should match the "name" of your worker
-    // {
-    //   "binding": "WORKER_SELF_REFERENCE",
-    //   "service": "my-app"
-    // },
+     {
+       "binding": "WORKER_SELF_REFERENCE",
+       "service": "pickhero-site"
+     }
   ],
   "r2_buckets": [
     {
       "binding": "R2",
-      "bucket_name": "pickhero-site","preview_bucket_name": "pickhero-site",
-    },
+      "bucket_name": "pickhero-site","preview_bucket_name": "pickhero-site"
+    }
     // Create a R2 binding with the binding name "NEXT_INC_CACHE_R2_BUCKET"
     // {
     //   "binding": "NEXT_INC_CACHE_R2_BUCKET",
     //   "bucket_name": "<BUCKET_NAME>",
     // },
-  ],
+  ]
 
   // Here's how to configure an additional environment
   // It can be deployed with `CLOUDFLARE_ENV=staging pnpm run deploy`
