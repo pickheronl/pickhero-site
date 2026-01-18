@@ -19,7 +19,19 @@ interface PageProps {
   params: Promise<{ slug: string }>
 }
 
-const categoryLabels:
+export async function generateStaticParams() {
+  const payload = await getPayload({ config })
+  const { docs: posts } = await payload.find({
+    collection: 'posts',
+    where: { isPublished: { equals: true } },
+    limit: 100,
+    select: { slug: true },
+  })
+
+  return posts.filter((post) => post.slug).map((post) => ({ slug: post.slug }))
+}
+
+const categoryLabels: Record<string, string> = {
   warehouse: 'Warehouse',
   ecommerce: 'E-commerce',
   integrations: 'Integraties',

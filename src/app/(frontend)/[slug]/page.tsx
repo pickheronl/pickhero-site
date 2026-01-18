@@ -15,6 +15,19 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
+  const payload = await getPayload({ config })
+  const { docs: pages } = await payload.find({
+    collection: 'pages',
+    limit: 100,
+    select: { slug: true },
+  })
+
+  return pages
+    .filter((page) => page.slug && page.slug !== 'home')
+    .map((page) => ({ slug: page.slug }))
+}
+
+export default async function Page({ params }: PageProps) {
   const { slug } = await params
   const payload = await getPayload({ config })
 
@@ -37,7 +50,6 @@ export async function generateStaticParams() {
     <div className="min-h-screen bg-background">
       <HeaderWrapper />
       <main className="pt-20 bg-gradient-subtle">
-
         <RenderBlocks blocks={page.blocks} />
       </main>
       <FooterWrapper />
