@@ -3,7 +3,7 @@
   "main": ".open-next/worker.js",
   "routes": [
     {
-      "pattern": "www.pickhero.nl",
+      "pattern": "pickhero.nl",
       "custom_domain": true
     }
   ],
