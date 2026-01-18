@@ -1,5 +1,6 @@
 import { getPayload } from 'payload'
 import config from '@payload-config'
+import { unstable_cache } from 'next/cache'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Calendar, Clock, ArrowLeft, User } from 'lucide-react'
@@ -10,8 +11,6 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 import TrialFormDialog from '@/components/site/TrialFormDialog'
 import type { Post } from '@/payload-types'
 
-// Cache forever, purge on-demand via Payload hooks
-export const revalidate = false
 // Allow dynamic paths not returned by generateStaticParams to be cached on-demand
 export const dynamicParams = true
 
@@ -79,21 +78,28 @@ export async function generateMetadata({ params }: PageProps) {
   }
 }
 
+const getPostBySlug = (slug: string) =>
+  unstable_cache(
+    async () => {
+      const payload = await getPayload({ config })
+      const { docs: posts } = await payload.find({
+        collection: 'posts',
+        where: {
+          slug: { equals: slug },
+          isPublished: { equals: true },
+        },
+        depth: 2,
+        limit: 1,
+      })
+      return posts[0] || null
+    },
+    [`post-${slug}`],
+    { tags: [`post-${slug}`, 'posts'] }
+  )
+
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params
-  const payload = await getPayload({ config })
-
-  const { docs: posts } = await payload.find({
-    collection: 'posts',
-    where: {
-      slug: { equals: slug },
-      isPublished: { equals: true },
-    },
-    depth: 2,
-    limit: 1,
-  })
-
-  const post = posts[0]
+  const post = await getPostBySlug(slug)()
 
   if (!post) {
     notFound()
